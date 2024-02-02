@@ -17,10 +17,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServer("Server=.;Database=SportsStats;User Id=sa;Password=Megame29!;TrustServerCertificate=True;"));
 
 builder.Services
-           .AddTransient<ISportsRepository, SportsRepository>();
+           .AddTransient<ISportsRepository, SportsRepository>()
+           .AddTransient<ISportMetricsRepository, SportMetricsRepository>();
 
 builder.Services
-            .AddTransient<ISportsService, SportsService>();
+            .AddTransient<ISportsService, SportsService>()
+            .AddTransient<ISportMetricsService, SportMetricsService>();
 
 var app = builder.Build();
 

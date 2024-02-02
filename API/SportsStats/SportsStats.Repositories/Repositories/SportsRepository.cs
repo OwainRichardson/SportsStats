@@ -21,7 +21,8 @@ namespace SportsStats.Repositories.Repositories
             Sport newSport = new Sport
             {
                 Id = Guid.NewGuid(),
-                Name = model.Name
+                Name = model.Name,
+                CreatedDate = DateTime.UtcNow
             };
 
             _sportsStatsContext.Sports.Add(newSport);
