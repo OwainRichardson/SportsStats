@@ -14,17 +14,28 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "allow_all",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin().AllowAnyMethod();
+                      });
+});
+
 builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServer("Server=.;Database=SportsStats;User Id=sa;Password=Megame29!;TrustServerCertificate=True;"));
 
 builder.Services
            .AddTransient<ISportsRepository, SportsRepository>()
-           .AddTransient<ISportMetricsRepository, SportMetricsRepository>();
+           .AddTransient<IMetricsRepository, MetricsRepository>();
 
 builder.Services
             .AddTransient<ISportsService, SportsService>()
-            .AddTransient<ISportMetricsService, SportMetricsService>();
+            .AddTransient<IMetricsService, MetricsService>();
 
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

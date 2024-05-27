@@ -12,8 +12,8 @@ using SportsStats.Data.Contexts;
 namespace SportsStats.Data.Migrations
 {
     [DbContext(typeof(SportsStatsContext))]
-    [Migration("20240202193855_AddSportMetricsTable")]
-    partial class AddSportMetricsTable
+    [Migration("20240527202223_AddMetricsTable")]
+    partial class AddMetricsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,33 +25,7 @@ namespace SportsStats.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SportsStats.Data.Entities.Sport", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sports");
-                });
-
-            modelBuilder.Entity("SportsStats.Data.Entities.SportMetric", b =>
+            modelBuilder.Entity("SportsStats.Data.Entities.Metric", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,10 +53,36 @@ namespace SportsStats.Data.Migrations
 
                     b.HasIndex("SportId");
 
-                    b.ToTable("SportMetrics");
+                    b.ToTable("Metrics");
                 });
 
-            modelBuilder.Entity("SportsStats.Data.Entities.SportMetric", b =>
+            modelBuilder.Entity("SportsStats.Data.Entities.Sport", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sports");
+                });
+
+            modelBuilder.Entity("SportsStats.Data.Entities.Metric", b =>
                 {
                     b.HasOne("SportsStats.Data.Entities.Sport", "Sport")
                         .WithMany()

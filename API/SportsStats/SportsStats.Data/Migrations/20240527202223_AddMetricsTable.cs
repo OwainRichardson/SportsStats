@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SportsStats.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddSportMetricsTable : Migration
+    public partial class AddMetricsTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "SportMetrics",
+                name: "Metrics",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -25,9 +25,9 @@ namespace SportsStats.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SportMetrics", x => x.Id);
+                    table.PrimaryKey("PK_Metrics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SportMetrics_Sports_SportId",
+                        name: "FK_Metrics_Sports_SportId",
                         column: x => x.SportId,
                         principalTable: "Sports",
                         principalColumn: "Id",
@@ -35,8 +35,8 @@ namespace SportsStats.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SportMetrics_SportId",
-                table: "SportMetrics",
+                name: "IX_Metrics_SportId",
+                table: "Metrics",
                 column: "SportId");
         }
 
@@ -44,7 +44,7 @@ namespace SportsStats.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SportMetrics");
+                name: "Metrics");
         }
     }
 }

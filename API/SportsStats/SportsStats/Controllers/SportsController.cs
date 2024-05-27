@@ -18,14 +18,14 @@ namespace SportsStats.Controllers
             _sportsService = sportsService;
         }
 
-        [HttpGet(Name = "GetSports")]
+        [HttpGet]
         [ProducesResponseType(typeof(List<SportDetails>), 200)]
         public async Task<List<SportDetails>> Get()
         {
             return await _sportsService.GetSports();
         }
 
-        [HttpPost(Name = "CreateSport")]
+        [HttpPost]
         public async Task Create(CreateSportInputModel model)
         {
             await _sportsService.CreateSport(model);

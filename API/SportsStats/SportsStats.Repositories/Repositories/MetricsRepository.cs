@@ -2,23 +2,23 @@
 using SportsStats.Data.Contexts;
 using SportsStats.Data.Entities;
 using SportsStats.Models.InputModels;
-using SportsStats.Models.SportMetric;
+using SportsStats.Models.Metrics;
 using SportsStats.Repositories.Interfaces;
 
 namespace SportsStats.Repositories.Repositories
 {
-    public class SportMetricsRepository : ISportMetricsRepository
+    public class MetricsRepository : IMetricsRepository
     {
         private readonly SportsStatsContext _sportsStatsContext;
 
-        public SportMetricsRepository(SportsStatsContext sportsStatsContext)
+        public MetricsRepository(SportsStatsContext sportsStatsContext)
         {
             _sportsStatsContext = sportsStatsContext;
         }
 
-        public async Task CreateSportMetric(CreateSportMetricInputModel model)
+        public async Task CreateMetricForSport(CreateMetricInputModel model)
         {
-            SportMetric newSportMetric = new SportMetric
+            Metric newMetric = new Metric
             {
                 Id = Guid.NewGuid(),
                 Name = model.MetricName,
@@ -26,15 +26,15 @@ namespace SportsStats.Repositories.Repositories
                 CreatedDate = DateTime.UtcNow
             };
 
-            _sportsStatsContext.SportMetrics.Add(newSportMetric);
+            _sportsStatsContext.Metrics.Add(newMetric);
             await _sportsStatsContext.SaveChangesAsync();
         }
 
-        public async Task<List<SportMetricDetails>> GetSportMetrics(Guid sportId)
+        public async Task<List<MetricDetails>> GetMetricsForSport(Guid sportId)
         {
-            return await _sportsStatsContext.SportMetrics
+            return await _sportsStatsContext.Metrics
                                 .Where(metric => metric.SportId == sportId)
-                                .Select(metric => new SportMetricDetails
+                                .Select(metric => new MetricDetails
                                 {
                                     Id = metric.Id,
                                     SportId = metric.SportId,

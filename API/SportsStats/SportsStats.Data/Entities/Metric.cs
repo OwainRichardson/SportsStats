@@ -2,7 +2,7 @@
 
 namespace SportsStats.Data.Entities
 {
-    public class SportMetric
+    public class Metric
     {
         [Key]
         public Guid Id { get; set; }
