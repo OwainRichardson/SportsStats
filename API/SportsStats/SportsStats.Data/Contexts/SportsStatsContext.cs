@@ -20,9 +20,14 @@ namespace SportsStats.Data.Contexts
             modelBuilder
                 .Entity<Metric>()
                 .HasKey(metric => metric.Id);
+
+            modelBuilder
+                .Entity<MetricValue>()
+                .HasKey(metricValue => metricValue.Id);
         }
 
         public DbSet<Sport> Sports { get; set; }
         public DbSet<Metric> Metrics { get; set; }
+        public DbSet<MetricValue> MetricValues { get; set; }
     }
 }
