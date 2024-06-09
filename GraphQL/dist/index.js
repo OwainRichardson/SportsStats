@@ -5,6 +5,7 @@ const typeDefs = `#graphql
         id: String
         name: String
         metrics: [Metric]
+        tournaments: [Tournament]
     }
 
     type Query {
@@ -24,6 +25,13 @@ const typeDefs = `#graphql
         id: String
         value: String
         metricId: String
+    }
+
+    type Tournament {
+        id: String
+        name: String
+        location: String
+        date: String
     }
 
     input SportInput {
@@ -47,6 +55,9 @@ const resolvers = {
     Sport: {
         metrics: async (sport) => {
             return await getSportMetrics(sport.id);
+        },
+        tournaments: async (sport) => {
+            return await getSportTournaments(sport.id);
         }
     },
     Metric: {
@@ -77,7 +88,6 @@ async function getSport(sportId) {
 }
 async function getSportMetrics(sportId) {
     const url = `http://localhost:5253/Sports/${sportId}/metrics`;
-    console.log(url);
     const result = await fetch(url, {
         headers: new Headers({
             Accept: 'application/json'
@@ -88,7 +98,16 @@ async function getSportMetrics(sportId) {
 }
 async function getMetricValues(metric) {
     const url = `http://localhost:5253/Sports/${metric.sportId}/metrics/${metric.id}/values`;
-    console.log(url);
+    const result = await fetch(url, {
+        headers: new Headers({
+            Accept: 'application/json'
+        })
+    });
+    const resultJson = await result.json();
+    return resultJson;
+}
+async function getSportTournaments(sportId) {
+    const url = `http://localhost:5253/Sports/${sportId}/tournaments`;
     const result = await fetch(url, {
         headers: new Headers({
             Accept: 'application/json'

@@ -3,6 +3,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { SportsApiResponse, SportApiResponse } from './types/SportsApiResponse';
 import { MetricApiResponse, MetricsApiResponse } from './types/MetricsApiResponse';
 import { MetricValuesApiResponse, MetricValueApiResponse } from './types/MetricValuesApiResponse';
+import { TournamentsApiResponse, TournamentApiResponse } from './types/TournamentsApiResponse';
 import { SportInput } from './types/SportInput'
 
 const typeDefs = `#graphql
@@ -10,6 +11,7 @@ const typeDefs = `#graphql
         id: String
         name: String
         metrics: [Metric]
+        tournaments: [Tournament]
     }
 
     type Query {
@@ -29,6 +31,13 @@ const typeDefs = `#graphql
         id: String
         value: String
         metricId: String
+    }
+
+    type Tournament {
+        id: String
+        name: String
+        location: String
+        date: String
     }
 
     input SportInput {
@@ -52,6 +61,9 @@ const resolvers = {
     Sport: {
         metrics: async (sport: SportApiResponse) => {
             return await getSportMetrics(sport.id);
+        },
+        tournaments: async (sport: SportApiResponse) => {
+            return await getSportTournaments(sport.id);
         }
     },
     Metric: {
@@ -105,6 +117,20 @@ async function getSportMetrics(sportId: String) : Promise<MetricsApiResponse> {
 
 async function getMetricValues(metric: MetricApiResponse) : Promise<MetricValuesApiResponse> {
     const url = `http://localhost:5253/Sports/${metric.sportId}/metrics/${metric.id}/values`;
+
+    const result = await fetch(url, {
+        headers: new Headers({
+            Accept: 'application/json'
+        })
+    });
+
+    const resultJson = await result.json() as any;
+
+    return resultJson;
+}
+
+async function getSportTournaments(sportId: String) : Promise<TournamentsApiResponse> {
+    const url = `http://localhost:5253/Sports/${sportId}/tournaments`;
 
     const result = await fetch(url, {
         headers: new Headers({
