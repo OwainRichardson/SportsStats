@@ -26,20 +26,46 @@ namespace SportsStats.Repositories.Repositories
                 CreatedDate = DateTime.UtcNow
             };
 
-            _sportsStatsContext.Metrics.Add(newMetric);
+            await _sportsStatsContext.Metrics.AddAsync(newMetric);
             await _sportsStatsContext.SaveChangesAsync();
         }
 
-        public async Task<List<MetricDetails>> GetMetricsForSport(Guid sportId)
+        public async Task CreateMetricValue(Guid metricId, string value)
+        {
+            MetricValue newMetricValue = new MetricValue
+            {
+                Id = Guid.NewGuid(),
+                MetricId = metricId,
+                Value = value
+            };
+
+            await _sportsStatsContext.MetricValues.AddAsync(newMetricValue);
+            await _sportsStatsContext.SaveChangesAsync();
+        }
+
+        public async Task<List<MetricViewModel>> GetMetricsForSport(Guid sportId)
         {
             return await _sportsStatsContext.Metrics
                                 .Where(metric => metric.SportId == sportId)
-                                .Select(metric => new MetricDetails
+                                .Select(metric => new MetricViewModel
                                 {
                                     Id = metric.Id,
                                     SportId = metric.SportId,
                                     Name = metric.Name,
                                     SportName = metric.Sport.Name
+                                })
+                                .ToListAsync();
+        }
+
+        public async Task<List<MetricValuesViewModel>> GetMetricValues(Guid metricId)
+        {
+            return await _sportsStatsContext.MetricValues
+                                .Where(value => value.MetricId == metricId)
+                                .Select(value => new MetricValuesViewModel
+                                {
+                                    Id = value.Id,
+                                    MetricId = metricId,
+                                    Value = value.Value
                                 })
                                 .ToListAsync();
         }

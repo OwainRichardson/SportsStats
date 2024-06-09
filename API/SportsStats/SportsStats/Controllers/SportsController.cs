@@ -19,16 +19,18 @@ namespace SportsStats.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<SportDetails>), 200)]
-        public async Task<List<SportDetails>> Get()
+        [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get()
         {
-            return await _sportsService.GetSports();
+            return Ok(await _sportsService.GetSports());
         }
 
         [HttpPost]
-        public async Task Create(CreateSportInputModel model)
+        public async Task<IActionResult> Create(CreateSportInputModel model)
         {
             await _sportsService.CreateSport(model);
+
+            return NoContent();
         }
     }
 }

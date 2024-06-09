@@ -6,6 +6,8 @@ namespace SportsStats.Repositories.Interfaces
     public interface IMetricsRepository
     {
         Task CreateMetricForSport(CreateMetricInputModel model);
-        Task<List<MetricDetails>> GetMetricsForSport(Guid sportId);
+        Task CreateMetricValue(Guid metricId, string value);
+        Task<List<MetricViewModel>> GetMetricsForSport(Guid sportId);
+        Task<List<MetricValuesViewModel>> GetMetricValues(Guid metricId);
     }
 }

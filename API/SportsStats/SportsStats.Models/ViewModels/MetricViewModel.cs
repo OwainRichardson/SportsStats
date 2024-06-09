@@ -1,6 +1,6 @@
 ﻿namespace SportsStats.Models.Metrics
 {
-    public class MetricDetails
+    public class MetricViewModel
     {
         public Guid Id { get; set; }
         public Guid SportId { get; set; }

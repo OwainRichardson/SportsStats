@@ -27,11 +27,13 @@ builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServe
 
 builder.Services
            .AddTransient<ISportsRepository, SportsRepository>()
-           .AddTransient<IMetricsRepository, MetricsRepository>();
+           .AddTransient<IMetricsRepository, MetricsRepository>()
+           .AddTransient<ITournamentsRepository, TournamentsRepository>();
 
 builder.Services
             .AddTransient<ISportsService, SportsService>()
-            .AddTransient<IMetricsService, MetricsService>();
+            .AddTransient<IMetricsService, MetricsService>()
+            .AddTransient<ITournamentsService, TournamentsService>();
 
 var app = builder.Build();
 
