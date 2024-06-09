@@ -25,6 +25,14 @@ namespace SportsStats.Controllers
             return Ok(await _sportsService.GetSports());
         }
 
+        [HttpGet]
+        [Route("{sportId}")]
+        [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get(Guid sportId)
+        {
+            return Ok(await _sportsService.GetSport(sportId));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateSportInputModel model)
         {

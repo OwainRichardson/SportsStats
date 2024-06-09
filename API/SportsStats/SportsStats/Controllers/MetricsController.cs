@@ -6,7 +6,6 @@ using SportsStats.Services.Interfaces;
 namespace SportsStats.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class MetricsController : ControllerBase
     {
         private readonly ILogger<MetricsController> _logger;
@@ -19,6 +18,7 @@ namespace SportsStats.Controllers
         }
 
         [HttpGet]
+        [Route("sports/{sportId}/metrics")]
         [ProducesResponseType(typeof(List<MetricViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid sportId)
         {
@@ -26,6 +26,7 @@ namespace SportsStats.Controllers
         }
 
         [HttpPost]
+        [Route("sports/{sportId}/metrics")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Create(CreateMetricInputModel model)
         {
@@ -35,7 +36,7 @@ namespace SportsStats.Controllers
         }
 
         [HttpGet]
-        [Route("{metricId}/values")]
+        [Route("sports/{sportId}/metrics/{metricId}/values")]
         [ProducesResponseType(typeof(List<MetricValuesViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetMetricValues([FromRoute] Guid metricId)
         {
@@ -43,7 +44,7 @@ namespace SportsStats.Controllers
         }
 
         [HttpPost]
-        [Route("{metricId}/values/{value}")]
+        [Route("sports/{sportId}/metrics/{metricId}/values/{value}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> CreateMetricValue([FromRoute] Guid metricId, [FromRoute] string value)
         {

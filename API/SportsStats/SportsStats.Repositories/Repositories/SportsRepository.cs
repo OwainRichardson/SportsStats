@@ -29,6 +29,17 @@ namespace SportsStats.Repositories.Repositories
             await _sportsStatsContext.SaveChangesAsync();
         }
 
+        public async Task<SportDetails> GetSport(Guid sportId)
+        {
+            return await _sportsStatsContext.Sports
+                                .Select(sport => new SportDetails
+                                {
+                                    Id = sport.Id,
+                                    Name = sport.Name
+                                })
+                                .FirstOrDefaultAsync(sport => sport.Id == sportId);
+        }
+
         public async Task<List<SportDetails>> GetSports()
         {
             return await _sportsStatsContext.Sports
