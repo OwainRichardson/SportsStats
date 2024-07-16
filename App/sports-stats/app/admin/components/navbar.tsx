@@ -9,6 +9,7 @@ export default function AdminNavBar() {
 
             <ul className="text-white">
                 <li className="pt-6 pb-6 pl-16 cursor-pointer hover:bg-gray-200 hover:text-orange-500">Sports</li>
+                <li className="pt-6 pb-6 pl-16 cursor-pointer hover:bg-gray-200 hover:text-orange-500">Users</li>
             </ul>
         </div>
     );
