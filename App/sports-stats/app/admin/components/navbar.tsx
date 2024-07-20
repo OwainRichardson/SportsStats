@@ -8,7 +8,7 @@ export default function AdminNavBar() {
             </div>
 
             <ul className="text-white">
-                <li className="pt-6 pb-6 pl-16 cursor-pointer hover:bg-gray-200 hover:text-orange-500">Sports</li>
+                <a href="/admin/sports"><li className="pt-6 pb-6 pl-16 cursor-pointer hover:bg-gray-200 hover:text-orange-500">Sports</li></a>
                 <li className="pt-6 pb-6 pl-16 cursor-pointer hover:bg-gray-200 hover:text-orange-500">Users</li>
             </ul>
         </div>
