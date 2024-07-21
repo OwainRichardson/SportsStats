@@ -1,6 +1,5 @@
 import AdminNavBar from "../components/navbar";
-
-const sports = ['Touch Rugby', 'Rugby Union', 'Ultimate Frisbee'];
+import { getSports } from "@/app/services/sportsService";
 
 export default function Sports() {
   return (
@@ -12,9 +11,9 @@ export default function Sports() {
         <div className="flex flex-column pt-6">
           <ul className="w-1/2">
             {
-                sports.map((sport, index) => {
+                getSports().map((sport, index) => {
                     return (
-                      <a href={"/admin/sports/settings/" + sport.toLowerCase()}><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer mb-2">{sport}</li></a>
+                      <a href={"/admin/sports/settings/" + sport.id}><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer mb-2">{sport.name}</li></a>
                     );
                 })
             }
