@@ -11,7 +11,7 @@ export default function Sports() {
         <div className="flex flex-column pt-6">
           <ul className="w-1/2">
             {
-                getSports().map((sport, index) => {
+                getSports().map((sport) => {
                     return (
                       <a href={"/admin/sports/settings/" + sport.id}><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer mb-2">{sport.name}</li></a>
                     );
