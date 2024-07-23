@@ -16,15 +16,18 @@ export default function SportsSettings() {
 
   const turnoverChildren: IMetricChild[] = [
     { label: 'Ball down' },
-    { label: 'Poor ruck' },
-    { label: 'Hips not straight'},
-    { label: 'Geese'}
+    { label: 'Poor ruck' }
+  ];
+
+  const nonTurnoverChildren: IMetricChild[] = [
+    { label: 'Hard touch' },
+    { label: 'Offisde' }
   ];
 
   const metrics: IMetricProps[] = [
     { type: 1, label: 'Try scored', scoreModifier: 5 },
     { type: 2, label: 'Turnovers', childNodes: turnoverChildren },
-    { type: 1, label: 'Beers', scoreModifier: 16 }
+    { type: 3, label: 'Penalties', childNodes: nonTurnoverChildren }
   ];
 
   const inputs: IInput[] = [
@@ -50,16 +53,12 @@ export default function SportsSettings() {
           }
         </div>
 
-        <div className="mt-6 border-2 border-blue-500 rounded p-6 bg-orange-100">
+        <div className="mt-6 border-2 border-blue-500 rounded p-6 bg-blue-100">
           <h2 className="text-2xl flex flex-column mb-2">{sport?.name} metrics</h2>
         {
           metrics.map((metric) => {
             return (
-              <Metric 
-                  type={metric.type}
-                  label={metric.label}
-                  childNodes={metric.childNodes}
-                  scoreModifier={metric.scoreModifier} />
+              <Metric {...metric} />
             );
           })
         }
