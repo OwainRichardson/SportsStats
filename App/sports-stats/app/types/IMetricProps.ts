@@ -1,9 +1,9 @@
 import { IMetricChild } from "./IMetricChild";
-import { MetricTypes } from "./MetricTypes";
 
 export interface IMetricProps {
-    type: MetricTypes;
     label: string;
     childNodes?: IMetricChild[]
+    isScoreModifier: boolean
     scoreModifier?: number
+    isTurnover: boolean
 }

@@ -25,15 +25,13 @@ export default function SportsSettings() {
   ];
 
   const metrics: IMetricProps[] = [
-    { type: 1, label: 'Try scored', scoreModifier: 5 },
-    { type: 2, label: 'Turnovers', childNodes: turnoverChildren },
-    { type: 3, label: 'Penalties', childNodes: nonTurnoverChildren }
+    { label: 'Try scored', isScoreModifier: true, scoreModifier: 5, isTurnover: true },
   ];
 
   const inputs: IInput[] = [
     { label: "Match length (mins)", value: "40"},
     { label: "Number of periods", value: "2"},
-    { label: "Name of singular period", value: "half"},
+    { label: "Name of period", value: "half"},
   ];  
 
   return (
@@ -62,17 +60,6 @@ export default function SportsSettings() {
             );
           })
         }
-
-          {/* introduce metric types 
-                - scoring metric
-                  - mutates score by a custom number of points
-                - turnover metric
-                  - gives possession to the other team
-                  - option to add pitch location
-                - non-turnover metric
-                  - keeps possession
-                  - option to add pitch location
-                */}
         </div>
       </div>
     </main>
