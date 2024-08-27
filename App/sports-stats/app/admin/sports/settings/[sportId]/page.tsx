@@ -45,7 +45,7 @@ export default function SportsSettings() {
           {
             inputs.map((input) => {
               return (
-                <InputWrapper label={input.label} value={input.value} />
+                <InputWrapper label={input.label} value={input.value} key={input.label} />
               );
             })
           }
@@ -56,7 +56,7 @@ export default function SportsSettings() {
         {
           metrics.map((metric) => {
             return (
-              <Metric {...metric} />
+              <Metric {...metric} key={metric.label} />
             );
           })
         }
