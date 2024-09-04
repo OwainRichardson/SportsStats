@@ -2,17 +2,19 @@
 
 import AdminNavBar from "../../../components/navbar";
 import { useParams } from 'next/navigation'
-import { getSports } from "@/app/services/sportsService";
+import { getSport } from "@/app/services/sportsService";
 import InputWrapper from "../../../components/input-wrapper";
 import Metric from "../../../components/metric";
 import { IMetricProps } from "@/app/types/IMetricProps";
 import { IMetricChild } from "@/app/types/IMetricChild";
 import { IInput } from "@/app/types/IInput";
+import { useQuery } from "react-query";
 
 export default function SportsSettings() {
   const { sportId } = useParams() as { sportId: string }
   const selectedSportId = parseInt(sportId);
-  const sport = { name: 'touch rugby' };
+  const sportQuery = useQuery("sport", () => getSport(sportId));
+  const sport = sportQuery.data;
 
   const turnoverChildren: IMetricChild[] = [
     { label: 'Ball down' },
