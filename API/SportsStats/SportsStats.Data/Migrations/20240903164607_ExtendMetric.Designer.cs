@@ -12,8 +12,8 @@ using SportsStats.Data.Contexts;
 namespace SportsStats.Data.Migrations
 {
     [DbContext(typeof(SportsStatsContext))]
-    [Migration("20240602181422_AddMetricValuesTable")]
-    partial class AddMetricValuesTable
+    [Migration("20240903164607_ExtendMetric")]
+    partial class ExtendMetric
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,8 +37,17 @@ namespace SportsStats.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsScoreModifier")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTurnover")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ScoreModifier")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("SportId")
                         .HasColumnType("uniqueidentifier");
@@ -54,23 +63,6 @@ namespace SportsStats.Data.Migrations
                     b.HasIndex("SportId");
 
                     b.ToTable("Metrics");
-                });
-
-            modelBuilder.Entity("SportsStats.Data.Entities.MetricValue", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MetricId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetricValues");
                 });
 
             modelBuilder.Entity("SportsStats.Data.Entities.Sport", b =>
@@ -97,6 +89,41 @@ namespace SportsStats.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sports");
+                });
+
+            modelBuilder.Entity("SportsStats.Data.Entities.Tournament", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SportId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tournaments");
                 });
 
             modelBuilder.Entity("SportsStats.Data.Entities.Metric", b =>

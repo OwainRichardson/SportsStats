@@ -19,19 +19,14 @@ namespace SportsStats.Services.Services
             await _metricsRepository.CreateMetricForSport(model);
         }
 
-        public async Task CreateMetricValue(Guid metricId, string value)
-        {
-            await _metricsRepository.CreateMetricValue(metricId, value);
-        }
-
         public async Task<List<MetricViewModel>> GetMetricsForSport(Guid sportId)
         {
             return await _metricsRepository.GetMetricsForSport(sportId);
         }
 
-        public async Task<List<MetricValuesViewModel>> GetMetricValues(Guid metricId)
+        public async Task UpdateMetricForSport(UpdateMetricInputModel model)
         {
-            return await _metricsRepository.GetMetricValues(metricId);
+            await _metricsRepository.UpdateMetricForSport(model);
         }
     }
 }

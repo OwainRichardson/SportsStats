@@ -23,23 +23,13 @@ namespace SportsStats.Repositories.Repositories
                 Id = Guid.NewGuid(),
                 Name = model.MetricName,
                 SportId = model.SportId,
-                CreatedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                IsScoreModifier = model.IsScoreModifier,
+                ScoreModifier = model.ScoreModifier,
+                IsTurnover = model.IsTurnover
             };
 
             await _sportsStatsContext.Metrics.AddAsync(newMetric);
-            await _sportsStatsContext.SaveChangesAsync();
-        }
-
-        public async Task CreateMetricValue(Guid metricId, string value)
-        {
-            MetricValue newMetricValue = new MetricValue
-            {
-                Id = Guid.NewGuid(),
-                MetricId = metricId,
-                Value = value
-            };
-
-            await _sportsStatsContext.MetricValues.AddAsync(newMetricValue);
             await _sportsStatsContext.SaveChangesAsync();
         }
 
@@ -52,22 +42,19 @@ namespace SportsStats.Repositories.Repositories
                                     Id = metric.Id,
                                     SportId = metric.SportId,
                                     Name = metric.Name,
-                                    SportName = metric.Sport.Name
+                                    SportName = metric.Sport.Name,
+                                    IsScoreModifier = metric.IsScoreModifier,
+                                    ScoreModifier = metric.ScoreModifier,
+                                    IsTurnover = metric.IsTurnover
                                 })
                                 .ToListAsync();
         }
 
-        public async Task<List<MetricValuesViewModel>> GetMetricValues(Guid metricId)
+        public async Task UpdateMetricForSport(UpdateMetricInputModel model)
         {
-            return await _sportsStatsContext.MetricValues
-                                .Where(value => value.MetricId == metricId)
-                                .Select(value => new MetricValuesViewModel
-                                {
-                                    Id = value.Id,
-                                    MetricId = metricId,
-                                    Value = value.Value
-                                })
-                                .ToListAsync();
+            Metric metric = await _sportsStatsContext.Metrics.FirstOrDefaultAsync(metric => metric.Id == model.Id);
+
+            // ToDo - update properties
         }
     }
 }

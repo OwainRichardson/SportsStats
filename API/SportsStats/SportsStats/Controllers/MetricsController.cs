@@ -35,20 +35,12 @@ namespace SportsStats.Controllers
             return NoContent();
         }
 
-        [HttpGet]
-        [Route("sports/{sportId}/metrics/{metricId}/values")]
-        [ProducesResponseType(typeof(List<MetricValuesViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetMetricValues([FromRoute] Guid metricId)
-        {
-            return Ok(await _metricsService.GetMetricValues(metricId));
-        }
-
-        [HttpPost]
-        [Route("sports/{sportId}/metrics/{metricId}/values/{value}")]
+        [HttpPut]
+        [Route("sports/{sportId}/metrics/{metricId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateMetricValue([FromRoute] Guid metricId, [FromRoute] string value)
+        public async Task<IActionResult> Update(UpdateMetricInputModel model)
         {
-            await _metricsService.CreateMetricValue(metricId, value);
+            await _metricsService.UpdateMetricForSport(model);
 
             return NoContent();
         }

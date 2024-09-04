@@ -12,7 +12,7 @@ import { IInput } from "@/app/types/IInput";
 export default function SportsSettings() {
   const { sportId } = useParams() as { sportId: string }
   const selectedSportId = parseInt(sportId);
-  const sport = getSports().find(sport => sport.id == selectedSportId);
+  const sport = { name: 'touch rugby' };
 
   const turnoverChildren: IMetricChild[] = [
     { label: 'Ball down' },

@@ -34,8 +34,17 @@ namespace SportsStats.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsScoreModifier")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTurnover")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ScoreModifier")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("SportId")
                         .HasColumnType("uniqueidentifier");
@@ -51,35 +60,6 @@ namespace SportsStats.Data.Migrations
                     b.HasIndex("SportId");
 
                     b.ToTable("Metrics");
-                });
-
-            modelBuilder.Entity("SportsStats.Data.Entities.MetricValue", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("MetricId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetricValues");
                 });
 
             modelBuilder.Entity("SportsStats.Data.Entities.Sport", b =>
