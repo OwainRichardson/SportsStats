@@ -24,10 +24,15 @@ namespace SportsStats.Data.Contexts
             modelBuilder
                 .Entity<Tournament>()
                 .HasKey(tournament => tournament.Id);
+
+            modelBuilder
+                .Entity<SportSetting>()
+                .HasKey(setting => setting.Id);
         }
 
         public DbSet<Sport> Sports { get; set; }
         public DbSet<Metric> Metrics { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<SportSetting> SportSettings { get; set; }
     }
 }

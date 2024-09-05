@@ -35,6 +35,7 @@ namespace SportsStats.Repositories.Repositories
         public async Task<TournamentViewModel> GetTournament(Guid tournamentId)
         {
             return await _sportsStatsContext.Tournaments
+                                .AsNoTracking()
                                 .Select(tournament => new TournamentViewModel
                                 {
                                     Id = tournament.Id,
@@ -49,6 +50,7 @@ namespace SportsStats.Repositories.Repositories
         public async Task<List<TournamentViewModel>> GetTournaments(Guid sportId)
         {
             return await _sportsStatsContext.Tournaments
+                                .AsNoTracking()
                                 .Where(tournament => tournament.SportId == sportId)
                                 .Select(tournament => new TournamentViewModel
                                 {

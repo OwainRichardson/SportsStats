@@ -32,6 +32,7 @@ namespace SportsStats.Repositories.Repositories
         public async Task<SportDetails> GetSport(Guid sportId)
         {
             return await _sportsStatsContext.Sports
+                                .AsNoTracking()
                                 .Select(sport => new SportDetails
                                 {
                                     Id = sport.Id,
@@ -43,6 +44,7 @@ namespace SportsStats.Repositories.Repositories
         public async Task<List<SportDetails>> GetSports()
         {
             return await _sportsStatsContext.Sports
+                                .AsNoTracking()
                                 .Select(sport => new SportDetails
                                 {
                                     Id = sport.Id,

@@ -36,6 +36,7 @@ namespace SportsStats.Repositories.Repositories
         public async Task<List<MetricViewModel>> GetMetricsForSport(Guid sportId)
         {
             return await _sportsStatsContext.Metrics
+                                .AsNoTracking()
                                 .Where(metric => metric.SportId == sportId)
                                 .Select(metric => new MetricViewModel
                                 {

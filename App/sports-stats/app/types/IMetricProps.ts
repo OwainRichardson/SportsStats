@@ -1,7 +1,7 @@
 import { IMetricChild } from "./IMetricChild";
 
 export interface IMetricProps {
-    label: string;
+    name: string;
     childNodes?: IMetricChild[]
     isScoreModifier: boolean
     scoreModifier?: number

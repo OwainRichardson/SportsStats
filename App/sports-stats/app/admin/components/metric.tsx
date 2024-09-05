@@ -22,7 +22,7 @@ export default function Metric(metric : IMetricProps) {
     return (
         <div className="mb-4">
             <div className="bg-green-300 p-2 hover:cursor-pointer" onClick={toggleSlideDown}>
-                <span className="p-2 text-left">{metric.label}</span>
+                <span className="p-2 text-left">{metric.name}</span>
                 {
                     isScoreModifier ?
                         <MetricPill label="score" />
