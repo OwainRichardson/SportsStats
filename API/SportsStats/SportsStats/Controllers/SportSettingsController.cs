@@ -6,7 +6,6 @@ using SportsStats.Services.Interfaces;
 namespace SportsStats.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class SportSettingsController : ControllerBase
     {
         private readonly ILogger<SportsController> _logger;
@@ -19,18 +18,29 @@ namespace SportsStats.Controllers
         }
 
         [HttpGet]
-        [Route("{sportId}/settings")]
-        [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
+        [Route("sports/{sportId}/settings")]
+        [ProducesResponseType(typeof(List<SportSettingDetail>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid sportId)
         {
             return Ok(await _sportSettingsService.GetSportSettings(sportId));
         }
 
         [HttpPost]
-        [Route("{sportId}/settings")]
-        public async Task<IActionResult> Create(CreateSportSettingInputModel model)
+        [Route("sports/{sportId}/settings")]
+        public async Task<IActionResult> Create([FromRoute] Guid sportId, [FromBody] CreateSportSettingInputModel model)
         {
+            model.SportId = sportId;
+
             await _sportSettingsService.CreateSportSetting(model);
+
+            return NoContent();
+        }
+
+        [HttpPut]
+        [Route("sports/{sportId}/settings/{settingId}")]
+        public async Task<IActionResult> Update([FromRoute] Guid settingId, [FromBody] UpdateSportSettingInputModel model)
+        {
+            await _sportSettingsService.UpdateSportSetting(settingId, model);
 
             return NoContent();
         }

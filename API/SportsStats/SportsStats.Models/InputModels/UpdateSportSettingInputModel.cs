@@ -1,9 +1,8 @@
-﻿
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SportsStats.Models.InputModels
 {
-    public class CreateSportSettingInputModel
+    public class UpdateSportSettingInputModel
     {
         public string Name { get; set; }
         public string Value { get; set; } = null;

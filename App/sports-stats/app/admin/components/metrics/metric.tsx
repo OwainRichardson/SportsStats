@@ -1,7 +1,7 @@
-import { IMetricProps } from "../../types/IMetricProps";
+import { IMetricProps } from "../../../types/IMetricProps";
 import MetricPill from "./metric-pill";
-import ShowHideCheckbox from "./show-hide-checkbox";
-import Checkbox from "./checkbox";
+import ShowHideCheckbox from "../show-hide-checkbox";
+import Checkbox from "../checkbox";
 import { useState } from 'react';
 
 function toggleSlideDown(e: React.SyntheticEvent) {

@@ -23,5 +23,10 @@ namespace SportsStats.Services.Services
         {
             return await _sportSettingsRepository.GetSportSettings(sportId);
         }
+
+        public async Task UpdateSportSetting(Guid settingId, UpdateSportSettingInputModel model)
+        {
+            await _sportSettingsRepository.UpdateSportSetting(settingId, model);
+        }
     }
 }

@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "allow_all",
                       builder =>
                       {
-                          builder.AllowAnyOrigin().AllowAnyMethod();
+                          builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                       });
 });
 
@@ -28,12 +28,14 @@ builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServe
 builder.Services
            .AddTransient<ISportsRepository, SportsRepository>()
            .AddTransient<IMetricsRepository, MetricsRepository>()
-           .AddTransient<ITournamentsRepository, TournamentsRepository>();
+           .AddTransient<ITournamentsRepository, TournamentsRepository>()
+           .AddTransient<ISportSettingsRepository, SportSettingsRepository>();
 
 builder.Services
             .AddTransient<ISportsService, SportsService>()
             .AddTransient<IMetricsService, MetricsService>()
-            .AddTransient<ITournamentsService, TournamentsService>();
+            .AddTransient<ITournamentsService, TournamentsService>()
+            .AddTransient<ISportSettingsService, SportSettingsService>();
 
 var app = builder.Build();
 

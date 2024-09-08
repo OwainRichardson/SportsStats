@@ -7,5 +7,6 @@ namespace SportsStats.Services.Interfaces
     {
         Task CreateSportSetting(CreateSportSettingInputModel model);
         Task<List<SportSettingDetail>> GetSportSettings(Guid sportId);
+        Task UpdateSportSetting(Guid settingId, UpdateSportSettingInputModel model);
     }
 }
