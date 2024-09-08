@@ -35,6 +35,7 @@ export default function SportSettings({ sportId }: ISportSettingsInput) {
                 // onChange={(e) => {
                 //   console.log({ field: e.target.name, value: e.target.value });
                 // }}
+                // Or pass function rather than the mutation - then the event handler can come with it into the function call
                 <FormInput label={input.name} value={input.value} key={input.id} onChange={() => mutation.mutate(input)} />
               );
             })
