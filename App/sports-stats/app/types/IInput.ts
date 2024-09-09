@@ -1,5 +1,5 @@
 export interface IInput {
     label: string;
     value: string;
-    onChange: Function;        
+    onChange: Function | null;        
 }

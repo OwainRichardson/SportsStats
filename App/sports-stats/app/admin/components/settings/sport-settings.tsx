@@ -5,9 +5,16 @@ import FormInput from "@/app/admin/components/form-input";
 import SettingsBox from "./settings-box";
 
 export default function SportSettings({ sportId }: ISportSettingsInput) {
-    const { data, status, error } = useQuery("sportSettings", () => getSportSettings(sportId));
-    const mutation = useMutation(updateSportSetting);
-    
+  const { data, status, error } = useQuery("sportSettings", () => getSportSettings(sportId));
+  const mutation = useMutation(updateSportSetting);
+  
+  function handleOnChange(event: any, input: ISportSettingsInput) {
+    console.log(event.target);
+    input.value = event.target.value;
+
+    mutation.mutate(input);
+  }
+
   if (status == "loading") {
     return (
         <SettingsBox>
@@ -30,13 +37,7 @@ export default function SportSettings({ sportId }: ISportSettingsInput) {
           {
             data.map((input) => {
               return (
-
-                // ToDo: Work out how to pass the event here too to get the updated value
-                // onChange={(e) => {
-                //   console.log({ field: e.target.name, value: e.target.value });
-                // }}
-                // Or pass function rather than the mutation - then the event handler can come with it into the function call
-                <FormInput label={input.name} value={input.value} key={input.id} onChange={() => mutation.mutate(input)} />
+                <FormInput label={input.name} value={input.value} key={input.id} onChange={(event: any) => handleOnChange(event, input)} />
               );
             })
           }
