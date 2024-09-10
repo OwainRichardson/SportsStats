@@ -6,4 +6,5 @@ export interface IMetricProps {
     isScoreModifier: boolean
     scoreModifier?: number
     isTurnover: boolean
+    id: string;
 }

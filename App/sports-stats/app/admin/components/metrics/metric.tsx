@@ -34,7 +34,7 @@ export default function Metric(metric : IMetricProps) {
                         : ""
                 }                
             </div>
-            <div className="bg-green-200 p-2 hidden">
+            <div className="bg-green-200 pl-4 py-2 hidden">
                 <ShowHideCheckbox 
                     showHideState={isScoreModifier}
                     setShowHideState={setIsScoreModifier}
@@ -43,7 +43,8 @@ export default function Metric(metric : IMetricProps) {
                     <Checkbox
                         checked={isTurnover}
                         setChecked={setIsTurover}
-                        label="Is turnover" />
+                        label="Is turnover"
+                        id={`is-turnover-${metric.id}`} />
             </div>
         </div>
     );
