@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { getSports } from "@/app/services/sportsService";
+import AdminPanel from "@/app/admin/components/admin-panel";
 
 export default function SportsList() {
     const { data, status, error } = useQuery("sports", getSports);
@@ -22,19 +23,21 @@ export default function SportsList() {
   if (data) {
     return (
         <div className="w-3/4 p-16">
-            <h1 className="text-3xl flex flex-column">Sports</h1>
+            <h1 className="text-3xl flex flex-column mb-4">Sports</h1>
 
-            <div className="flex flex-column pt-6">
-                <ul className="w-1/2">
-                {
-                    data.map((sport) => {
-                        return (
-                        <a href={"/admin/sports/settings/" + sport.id}><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer mb-2">{sport.name}</li></a>
-                        );
-                    })
-                }
-                </ul>
-            </div>
+            <AdminPanel width="full-width">
+                <div className="flex flex-column">
+                    <ul className="w-1/2">
+                    {
+                        data.map((sport) => {
+                            return (
+                            <a href={"/admin/sports/settings/" + sport.id}><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer">{sport.name}</li></a>
+                            );
+                        })
+                    }
+                    </ul>
+                </div>
+            </AdminPanel>
         </div>
         );
     }
