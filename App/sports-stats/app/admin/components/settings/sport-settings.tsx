@@ -37,7 +37,7 @@ export default function SportSettings({ sportId }: ISportSettingsInput) {
           {
             data.map((input) => {
               return (
-                <FormInput label={input.name} value={input.value} key={input.id} onChange={(event: any) => handleOnChange(event, input)} />
+                <FormInput label={input.name} value={input.value} id={input.name} key={input.id} onChange={(event: any) => handleOnChange(event, input)} />
               );
             })
           }

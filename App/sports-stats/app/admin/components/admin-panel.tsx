@@ -1,9 +1,8 @@
 import { IAdminPanelProps } from "@/app/types/IAdminPanelProps";
-import { Children } from 'react';
 
-export default function Checkbox({width}: IAdminPanelProps, {children}) {
+export default function Checkbox({width, children}: IAdminPanelProps) {
     return (
-        <div className="rounded-lg bg-gray-100 p-6 w-full">
+        <div className={`rounded-lg bg-gray-100 p-6 ${width}`}>
             {children}
         </div>
     );
