@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import Metric from "./metric";
 import { IMetricListInput } from "@/app/types/inputs/IMetricListInput";
 import MetricBox from "./metric-box";
-import FormInput from "@/app/admin/components/form-input";
 import AddMetricModal from "./add-metric-modal";
 import Button from "@/app/admin/components/button";
 

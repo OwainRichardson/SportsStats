@@ -1,10 +1,11 @@
 import { useQuery, useMutation } from "react-query";
 import { getSportSettings, updateSportSetting } from "@/app/services/sportSettingsService";
 import {ISportSettingsInput} from "@/app/types/inputs/ISportSettingsInput";
+import {ISportSettingsProps} from "@/app/types/inputs/ISportSettingsProps";
 import FormInput from "@/app/admin/components/form-input";
 import SettingsBox from "./settings-box";
 
-export default function SportSettings({ sportId }: ISportSettingsInput) {
+export default function SportSettings({ sportId }: ISportSettingsProps) {
   const { data, status, error } = useQuery("sportSettings", () => getSportSettings(sportId));
   const mutation = useMutation(updateSportSetting);
   

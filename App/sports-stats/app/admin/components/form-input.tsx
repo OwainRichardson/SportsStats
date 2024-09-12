@@ -10,7 +10,7 @@ export default function FormInput(input: IInput) {
                 <input className="h-full border-2 rounded border-gray-300 pl-2 py-4 focus:outline-none focus:border-orange-500 focus:ring-0" 
                         type="text"
                         defaultValue={input.value} 
-                        onChange={(event) => input.onChange(event, input)} 
+                        onChange={(event) => input.onChange?.(event, input) } 
                         id={input.id} />
             </div>
         );
