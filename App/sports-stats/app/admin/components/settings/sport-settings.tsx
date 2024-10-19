@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "react-query";
 import { getSportSettings, updateSportSetting } from "@/app/services/sportSettingsService";
 import {ISportSettingsInput} from "@/app/types/inputs/ISportSettingsInput";
 import {ISportSettingsProps} from "@/app/types/inputs/ISportSettingsProps";
-import FormInput from "@/app/admin/components/form-input";
+import Textbox from "@/app/admin/components/forms/textbox";
 import SettingsBox from "./settings-box";
 
 export default function SportSettings({ sportId }: ISportSettingsProps) {
@@ -38,7 +38,7 @@ export default function SportSettings({ sportId }: ISportSettingsProps) {
           {
             data.map((input) => {
               return (
-                <FormInput label={input.name} value={input.value} id={input.name} key={input.id} onChange={(event: any) => handleOnChange(event, input)} />
+                <Textbox label={input.name} value={input.value} id={input.name} key={input.id} onChange={(event: any) => handleOnChange(event, input)} size="lg" />
               );
             })
           }

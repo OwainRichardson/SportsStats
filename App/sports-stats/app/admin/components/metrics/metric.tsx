@@ -1,13 +1,11 @@
 import { IMetricProps } from "../../../types/IMetricProps";
 import MetricPill from "./metric-pill";
-import ShowHideCheckbox from "../show-hide-checkbox";
-import Checkbox from "../checkbox";
+import Checkbox from "../forms/checkbox";
 import { useState } from 'react';
+import Textbox from "../forms/textbox";
 
-function toggleSlideDown(e: React.SyntheticEvent) {
-    const clickedDiv = e.target as HTMLButtonElement;
-
-    const slideDown = clickedDiv.nextElementSibling;
+function toggleSlideDown(metricId: string) {
+    const slideDown = document.getElementById(`slidedown-${metricId}`);
     slideDown?.classList.toggle("hidden");
 }
 
@@ -15,13 +13,9 @@ export default function Metric(metric : IMetricProps) {
     const [isScoreModifier, setIsScoreModifier] = useState(metric.isScoreModifier);
     const [isTurnover, setIsTurover] = useState(metric.isTurnover);
 
-    function toggleIsTurnover() {
-        setIsTurover(!isTurnover);
-    }
-
     return (
         <div className="mb-4">
-            <div className="bg-green-300 p-2 hover:cursor-pointer" onClick={toggleSlideDown}>
+            <div className="bg-green-300 p-2 hover:cursor-pointer" onClick={() => toggleSlideDown(metric.id)}>
                 <span className="p-2 text-left">{metric.name}</span>
                 {
                     isScoreModifier ?
@@ -34,17 +28,27 @@ export default function Metric(metric : IMetricProps) {
                         : ""
                 }                
             </div>
-            <div className="bg-green-200 pl-4 py-2 hidden">
-                <ShowHideCheckbox 
-                    showHideState={isScoreModifier}
-                    setShowHideState={setIsScoreModifier}
-                    value={metric.scoreModifier?.toString()} />
+            <div className="bg-green-200 pl-4 py-2 hidden" id={`slidedown-${metric.id}`}>
+                <Checkbox
+                    checked={isScoreModifier}
+                    setChecked={setIsScoreModifier}
+                    label="Is score modifier"
+                    id={`is-score-modifier-${metric.id}`} 
+                    size="sm" />
 
-                    <Checkbox
-                        checked={isTurnover}
-                        setChecked={setIsTurover}
-                        label="Is turnover"
-                        id={`is-turnover-${metric.id}`} />
+                <Textbox
+                    label="Modifies score by"
+                    id={`score-modifier-${metric.id}`}
+                    size="sm" 
+                    value={metric.scoreModifier?.toString() ?? "0"} 
+                    onChange={null}/>
+
+                <Checkbox
+                    checked={isTurnover}
+                    setChecked={setIsTurover}
+                    label="Is turnover"
+                    id={`is-turnover-${metric.id}`} 
+                    size="sm" />
             </div>
         </div>
     );

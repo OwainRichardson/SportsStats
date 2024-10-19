@@ -3,7 +3,6 @@
 import AdminNavBar from "../../../components/navbar";
 import { useParams } from 'next/navigation'
 import { getSport } from "@/app/services/sportsService";
-import { IInput } from "@/app/types/IInput";
 import { useQuery } from "react-query";
 import MetricList from "@/app/admin/components/metrics/metric-list";
 import SportSettings from "@/app/admin/components/settings/sport-settings";

@@ -1,16 +1,28 @@
 import { ICheckboxProps } from "@/app/types/ICheckboxProps"
 
-export default function Checkbox({checked, setChecked, label, id}: ICheckboxProps) {
+export default function Checkbox({checked, setChecked, label, id, size}: ICheckboxProps) {
     function toggleChecked() {
         if (setChecked) {
             setChecked(!checked);
         }
     }
 
+    let labelsize = '';
+
+    console.log(size);
+
+    if (size == 'sm') {
+        labelsize = 'w-1/6';
+    } else if (size == 'md') {
+        labelsize = 'w-1/4';
+    } else if (size == 'lg') {
+        labelsize = 'w-1/3';
+    }
+
     if (setChecked) {
         return (
             <div className="flex flex-column mb-4 h-8 items-center">
-                <label className="w-1/6">{label}:</label>
+                <label className={`${labelsize}`}>{label}:</label>
                 <input className="hover:cursor-pointer" 
                         type="checkbox" 
                         defaultChecked={checked} 
@@ -22,7 +34,7 @@ export default function Checkbox({checked, setChecked, label, id}: ICheckboxProp
 
     return (
         <div className="flex flex-column mb-4 h-8 items-center">
-            <label className="w-1/6">{label}:</label>
+            <label className={`${labelsize}`}>{label}:</label>
             <input className="hover:cursor-pointer" 
                     type="checkbox" 
                     defaultChecked={checked} 

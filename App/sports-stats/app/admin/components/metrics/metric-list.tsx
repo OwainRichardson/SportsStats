@@ -3,16 +3,11 @@ import { useQuery } from "react-query";
 import Metric from "./metric";
 import { IMetricListInput } from "@/app/types/inputs/IMetricListInput";
 import MetricBox from "./metric-box";
-import AddMetricModal from "./add-metric-modal";
-import Button from "@/app/admin/components/button";
+import AddMetricModal, { showModal } from "./add-metric-modal";
+import Button from "@/app/admin/components/forms/button";
 
 export default function MetricList({ sportId }: IMetricListInput) {
   const { data, status, error } = useQuery("metrics", () => getMetrics(sportId));
-
-  function showModal() {
-    const modalWrapper = document.getElementById("modal-wrapper");
-        modalWrapper?.classList.remove("hidden");
-  }
 
   if (status == "loading") {
     return (
@@ -41,7 +36,7 @@ export default function MetricList({ sportId }: IMetricListInput) {
                   );
               })
             }
-            <Button label="Add Metric" onClick={showModal} id="add-metric" />
+          <Button label="Add Metric" onClick={showModal} id="add-metric" />
           </MetricBox>
           <AddMetricModal sportId={sportId} />
         </>

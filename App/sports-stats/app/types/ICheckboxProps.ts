@@ -5,4 +5,5 @@ export interface ICheckboxProps {
     setChecked?: Dispatch<SetStateAction<boolean>>;
     label: string;
     id: string;
+    size: 'sm' | 'md' | 'lg';
 }
