@@ -27,3 +27,17 @@ export async function createMetric(input: ICreateMetricInput): Promise<void> {
         console.log("ERROR ERROR ERROR")
     }
 }
+
+export async function deleteMetric(sportId: string, metricId: string): Promise<void> {
+    try {
+        const response = await fetch(`http://localhost:5253/sports/${sportId}/metrics/${metricId}`, { method: 'DELETE' });
+        if (response.status == 200) {
+            return;
+        }
+
+        throw Error(`Failed to delete metric with id ${metricId} for sport ${sportId}`);
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}

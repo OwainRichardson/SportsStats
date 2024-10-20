@@ -15,20 +15,20 @@ export default function Metric(metric : IMetricProps) {
 
     return (
         <div className="mb-4">
-            <div className="bg-green-300 p-2 hover:cursor-pointer" onClick={() => toggleSlideDown(metric.id)}>
+            <div className="bg-orange-300 p-2 rounded-md hover:cursor-pointer" onClick={() => toggleSlideDown(metric.id)}>
                 <span className="p-2 text-left">{metric.name}</span>
                 {
                     isScoreModifier ?
-                        <MetricPill label="score" />
+                        <MetricPill label="score" colour="green" />
                         : ""
                 }
                 {
                     isTurnover ?
-                        <MetricPill label="turnover" />
+                        <MetricPill label="turnover" colour="yellow" />
                         : ""
                 }                
             </div>
-            <div className="bg-green-200 pl-4 py-2 hidden" id={`slidedown-${metric.id}`}>
+            <div className="bg-orange-200 pl-4 py-2 rounded-md hidden" id={`slidedown-${metric.id}`}>
                 <Checkbox
                     checked={isScoreModifier}
                     setChecked={setIsScoreModifier}

@@ -26,11 +26,3 @@ body {
     text-wrap: balance;
   }
 }
-
-.score-pill {
-  background-color: #ff0000;
-}
-
-.turnover-pill {
-  background-color: #00ff00;
-}
