@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { getSports } from "@/app/services/sportsService";
 import AdminPanel from "@/app/admin/components/admin-panel";
+import Icon from "@/app/admin/components/icon";
 
 export default function SportsList() {
     const { data, status, error } = useQuery("sports", getSports);
@@ -31,7 +32,12 @@ export default function SportsList() {
                     {
                         data.map((sport) => {
                             return (
-                            <a href={"/admin/sports/settings/" + sport.id} key={sport.id} ><li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer">{sport.name}</li></a>
+                            <a href={"/admin/sports/settings/" + sport.id} key={sport.id}>
+                                <li className="flex flex-column py-4 bg-gray-100 hover:bg-orange-300 pl-4 cursor-pointer">
+                                    <Icon iconName="sports_rugby" />
+                                    {sport.name}
+                                </li>
+                            </a>
                             );
                         })
                     }

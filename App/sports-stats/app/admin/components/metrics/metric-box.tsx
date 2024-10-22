@@ -1,4 +1,5 @@
 import { IMetricBoxProps } from "@/app/types/IMetricBoxProps";
+import Icon from "../icon";
 
 export default function MetricBox({children}: IMetricBoxProps) {
     return (
