@@ -11,5 +11,6 @@ namespace SportsStats.Data.Entities
         public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public Guid? UpdatedBy { get; set; }
+        public string Icon { get; set; }
     }
 }

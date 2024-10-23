@@ -22,7 +22,8 @@ namespace SportsStats.Repositories.Repositories
             {
                 Id = Guid.NewGuid(),
                 Name = model.Name,
-                CreatedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                Icon = model.Icon
             };
 
             _sportsStatsContext.Sports.Add(newSport);
@@ -36,7 +37,8 @@ namespace SportsStats.Repositories.Repositories
                                 .Select(sport => new SportDetails
                                 {
                                     Id = sport.Id,
-                                    Name = sport.Name
+                                    Name = sport.Name,
+                                    Icon = sport.Icon
                                 })
                                 .FirstOrDefaultAsync(sport => sport.Id == sportId);
         }
@@ -48,7 +50,8 @@ namespace SportsStats.Repositories.Repositories
                                 .Select(sport => new SportDetails
                                 {
                                     Id = sport.Id,
-                                    Name = sport.Name
+                                    Name = sport.Name,
+                                    Icon = sport.Icon
                                 })
                                 .ToListAsync();
         }
