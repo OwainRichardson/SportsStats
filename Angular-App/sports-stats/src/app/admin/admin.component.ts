@@ -1,10 +1,11 @@
-import {Component, inject} from '@angular/core';
+import { Component } from '@angular/core';
 import { SportsService, Sport } from '../services/sports.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.less'
 })
