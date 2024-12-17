@@ -1,7 +1,11 @@
-<nav>
+<div class="container">
+    <p>home works!</p>
+
     <ul>
-        <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-        <li><a routerLink="/admin/sports" routerLinkActive="active" ariaCurrentWhenActive="page">Admin</a></li>
+        <li *ngFor="let sport of sports">
+            <a routerLink="/sports/{{sport.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">
+                {{sport.name}}
+            </a>
+        </li>
     </ul>
-</nav>
-<router-outlet></router-outlet>
+</div>

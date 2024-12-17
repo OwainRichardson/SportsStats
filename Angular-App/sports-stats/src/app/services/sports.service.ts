@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Sport } from "../types/sports/sport";
 
 @Injectable({
     providedIn: 'root',
@@ -17,8 +18,4 @@ import { Observable } from "rxjs";
     getSportById(id: string): Observable<Sport> {
       return this.httpClient.get<Sport>(`http://localhost:5253/sports/${id}`);
     }
-  }
-  
-  export interface Sport {
-    name: string
   }

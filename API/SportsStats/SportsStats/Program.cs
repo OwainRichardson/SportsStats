@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServer("Server=.;Database=SportsStats;User Id=sa;Password=Megame29!;TrustServerCertificate=True;"));
+builder.Services.AddDbContext<SportsStatsContext>(options => options.UseSqlServer("Server=.;Database=SportsStats;Integrated Security=true;TrustServerCertificate=True;"));
 
 builder.Services
            .AddTransient<ISportsRepository, SportsRepository>()

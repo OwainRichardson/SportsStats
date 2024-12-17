@@ -11,32 +11,6 @@ namespace SportsStats.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "CreatedBy",
-                table: "MetricValues",
-                type: "uniqueidentifier",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "CreatedDate",
-                table: "MetricValues",
-                type: "datetime2",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "UpdatedBy",
-                table: "MetricValues",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "UpdatedDate",
-                table: "MetricValues",
-                type: "datetime2",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Tournaments",
                 columns: table => new
@@ -62,22 +36,6 @@ namespace SportsStats.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Tournaments");
-
-            migrationBuilder.DropColumn(
-                name: "CreatedBy",
-                table: "MetricValues");
-
-            migrationBuilder.DropColumn(
-                name: "CreatedDate",
-                table: "MetricValues");
-
-            migrationBuilder.DropColumn(
-                name: "UpdatedBy",
-                table: "MetricValues");
-
-            migrationBuilder.DropColumn(
-                name: "UpdatedDate",
-                table: "MetricValues");
         }
     }
 }

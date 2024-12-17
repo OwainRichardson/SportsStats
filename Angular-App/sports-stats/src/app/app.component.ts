@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
+import { Router, NavigationEnd, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [ AdminComponent, CommonModule, HomeComponent ],
+  imports: [ CommonModule, RouterOutlet, RouterLink, RouterLinkActive ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
