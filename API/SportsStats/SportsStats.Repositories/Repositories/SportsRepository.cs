@@ -53,6 +53,7 @@ namespace SportsStats.Repositories.Repositories
                                     Name = sport.Name,
                                     Icon = sport.Icon
                                 })
+                                .OrderBy(sport => sport.Name)
                                 .ToListAsync();
         }
     }

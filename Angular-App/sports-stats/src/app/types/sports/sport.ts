@@ -1,4 +1,5 @@
 export interface Sport {
     id: string,
-    name: string
+    name: string,
+    icon: string
   }

@@ -1,19 +1,26 @@
+.header {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 700;
+    font-style: normal;
+}
+
 nav {
-    background-color: orange;
     width: 100%;
 
     ul {
-        li {
-            display: inline-block;
-            padding: 10px 20px;
-            cursor: pointer;
-
-            &:has(a.active) {
-                background-color: red;
-                
-                a {
-                    color: white;
-                }
+        a {
+            height: 100%;
+            padding: 10px 20px;   
+            display: inline-block; 
+            color: white;  
+            
+            li {
+                display: inline-block;
+                vertical-align: top;
+                cursor: pointer;                    
             }
         }
     }

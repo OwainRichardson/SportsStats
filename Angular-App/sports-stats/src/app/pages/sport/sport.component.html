@@ -1,0 +1,14 @@
+<div class="container column-container">
+    <p *ngIf="loading; else content">
+        Loading...
+    </p>
+
+    <ng-template #content>
+        <h2>{{sport.name}}</h2>
+        <h3>Tournaments</h3>
+        
+        <div class="row-container">
+            <app-card *ngFor="let tournament of tournaments" [name]="tournament.name" [icon]="sport.icon" [link]="'tournaments/' + tournament.id">{{tournament.name}}</app-card>
+        </div>
+    </ng-template>
+</div>
