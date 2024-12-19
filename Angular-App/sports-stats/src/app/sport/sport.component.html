@@ -1,6 +1,9 @@
 <div class="container">
-    <p>sport works!</p>
-    <p>{{sportId}}</p>
-    <p>{{sport.id}}</p>
-    <p>{{sport.name}}</p>
+    <p *ngIf="loading; else content">
+        Loading...
+    </p>
+
+    <ng-template #content>
+        <p>{{sport.name}}</p>  
+    </ng-template>
 </div>

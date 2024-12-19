@@ -4,22 +4,28 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Sport } from '../types/sports/sport';
 import { SportsService } from '../services/sports.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sport',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './sport.component.html',
   styleUrl: './sport.component.less'
 })
 export class SportComponent {
-  sportId: string;
   sport: Sport;
-
+  loading = true;
+  
   constructor(private route: ActivatedRoute, private sportService: SportsService) {
     route.paramMap.subscribe(params => {
-      this.sportId = String(params.get('sportId'));
+      const sportId = String(params.get('sportId'));
 
-      return sportService.getSportById(this.sportId).subscribe(sport => this.sport = sport);
+      const sports = sportService.getSportById(sportId).subscribe(sport => {
+          this.sport = sport
+          this.loading = false;
+      });
+      
+      return sports;
     });
   }
 }
