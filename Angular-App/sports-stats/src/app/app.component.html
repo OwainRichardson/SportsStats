@@ -6,4 +6,12 @@
 </nav>
 <router-outlet></router-outlet>
 
-<p>IsAdmin: {{isAdmin}}</p>
+<p>Area: {{area}}</p>
+
+<ng-template [ngIf]="area === 'sport'">
+    <app-sports></app-sports>
+</ng-template>
+
+<ng-template [ngIf]="area === 'geese'">
+    <p>Geese</p>
+</ng-template>
