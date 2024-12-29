@@ -18,7 +18,7 @@ export class AppComponent {
 
     router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        this.isAdmin = e.url === '/admin';
+        this.isAdmin = e.url.includes('/admin');
       }
     });
   }
