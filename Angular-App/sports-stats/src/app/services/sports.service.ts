@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Sport } from "../types/sports/sport";
 import { Tournament } from "../types/sports/tournament";
-import { SportSetting } from "../types/sports/SportSetting";
+import { SportSetting } from "../types/sports/sportSetting";
 
 @Injectable({
     providedIn: 'root',

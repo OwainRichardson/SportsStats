@@ -5,7 +5,7 @@ import { SportsService } from '../../../services/sports.service';
 import { ActivatedRoute } from '@angular/router';
 import { AdminBreadcrumbComponent } from '../../../components/admin/admin-breadcrumb/admin-breadcrumb.component';
 import { Breadcrumb } from '../../../types/admin/breadcrumb';
-import { SportSetting } from '../../../types/sports/SportSetting';
+import { SportSetting } from '../../../types/sports/sportSetting';
 import { AdminFormGroupComponent } from '../../../components/admin/admin-form-group/admin-form-group.component';
 
 @Component({
