@@ -1,0 +1,42 @@
+@import "../../../../styles/colours.less";
+
+.breadcrumb-container {
+    padding-left: 40px;
+
+    a.breadcrumb-item {
+        background-color: @theme;
+        margin-right: 35px;
+        position: relative;
+        height: 25px;
+        display: inline-block;
+        padding-top: 5px;
+        text-decoration: none;
+        color: white;
+
+        &::after {
+            content: " "; 
+            display: block; 
+            width: 0; 
+            height: 0;
+            border-bottom: 30px solid transparent;
+            border-left: 25px solid @theme;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 2; 
+        }
+
+        &::before {
+            content: " "; 
+            display: block; 
+            width: 0; 
+            height: 0;
+            border-top: 30px solid transparent;
+            border-right: 25px solid @theme;
+            position: absolute;
+            top: 0;
+            left: -25px;
+            z-index: 2; 
+        }
+    }
+}

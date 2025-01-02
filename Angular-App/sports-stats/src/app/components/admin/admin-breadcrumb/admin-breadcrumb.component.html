@@ -1,0 +1,6 @@
+<div class="breadcrumb-container">
+    @for (link of links; track link.link)
+    {
+        <a class="breadcrumb-item" routerLink="{{link.link}}">{{link.label}}</a>
+    }
+</div>

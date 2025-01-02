@@ -1,0 +1,18 @@
+@import "./colours.less";
+
+.form-group {
+    margin-bottom: 1rem;
+
+    .form-label {
+        display: inline-block;
+        min-width: 175px;
+    }
+
+    .form-input {
+        padding: 10px;
+
+        &:focus {
+            outline-color: @theme;
+        }
+    }
+}

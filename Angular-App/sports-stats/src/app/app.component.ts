@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd, RouterOutlet, RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { filter, map, mergeMap } from 'rxjs/operators';
-import { SportsComponent } from "./pages/sports/sports.component";
+import { filter } from 'rxjs/operators';
+import { HomeAreaComponent } from './areas/home-area/home-area.component';
+import { AdminAreaComponent } from './areas/admin-area/admin-area.component';
+import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, SportsComponent],
+  imports: [CommonModule, HomeAreaComponent, AdminAreaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

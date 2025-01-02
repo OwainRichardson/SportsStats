@@ -1,0 +1,6 @@
+<div class="container column-container">
+    <app-admin-breadcrumb [links]="breadcrumbs"></app-admin-breadcrumb>
+
+    <h2>{{sport.name}}</h2>
+    <app-admin-form-group *ngFor="let setting of settings" [name]="setting.name" [value]="setting.value"></app-admin-form-group>
+</div>

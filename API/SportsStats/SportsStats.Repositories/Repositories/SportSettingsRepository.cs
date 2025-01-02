@@ -23,7 +23,8 @@ namespace SportsStats.Repositories.Repositories
             {
                 Name = model.Name,
                 CreatedDate = DateTime.UtcNow,
-                SportId = model.SportId
+                SportId = model.SportId,
+                Value = model.Value
             };
 
             await _sportsStatsContext.SportSettings.AddAsync(newSportSetting);

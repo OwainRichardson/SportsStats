@@ -1,17 +1,7 @@
-<div class="header theme-d3">Sports Stats</div>
-<nav class="theme-d1">
-    <ul>
-        <a routerLink="sports" routerLinkActive="theme-d5" ariaCurrentWhenActive="page"><li>Sports</li></a>
-    </ul>
-</nav>
-<router-outlet></router-outlet>
-
-<p>Area: {{area}}</p>
-
-<ng-template [ngIf]="area === 'sport'">
-    <app-sports></app-sports>
+<ng-template [ngIf]="area === 'main'">
+    <app-home-area></app-home-area>
 </ng-template>
 
-<ng-template [ngIf]="area === 'geese'">
-    <p>Geese</p>
+<ng-template [ngIf]="area === 'admin'">
+    <app-admin-area></app-admin-area>
 </ng-template>

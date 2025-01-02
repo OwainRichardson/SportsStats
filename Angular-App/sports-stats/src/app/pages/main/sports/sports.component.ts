@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SportsService } from '../../services/sports.service';
-import { Sport } from '../../types/sports/sport';
+import { SportsService } from '../../../services/sports.service';
+import { Sport } from '../../../types/sports/sport';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from "../../components/card/card.component";
+import { CardComponent } from "../../../components/global/card/card.component";
 
 @Component({
   selector: 'app-sports',

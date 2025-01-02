@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "./styles/forms.less";
+@import "./styles/colours.less";
+
 html, body { margin: 0; padding: 0}
 ul { margin: 0; padding: 0}
 
@@ -15,6 +18,7 @@ ul { margin: 0; padding: 0}
     align-items: top;
     flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
 }
 
 .column-container {
@@ -28,55 +32,55 @@ ul { margin: 0; padding: 0}
 }
 
 .theme-l5 {
-    background-color: #fffaf0 !important;
+    background-color: @theme-l5 !important;
     color:#000 !important; 
 }
 .theme-l4 {
-    background-color: #ffedcc !important;
+    background-color: @theme-l4 !important;
     color:#000 !important; 
 }
 
 .theme-l3 {
-    background-color: #ffdb99 !important;
+    background-color: @theme-l3 !important;
     color:#000 !important; 
 }
 
 .theme-l2 {
-    background-color: #ffc966 !important;
+    background-color: @theme-l2 !important;
     color:#000 !important; 
 }
 
 .theme-l1 {
-    background-color: #ffb833 !important;
+    background-color: @theme-l1 !important;
     color:#000 !important; 
 }
 
 .theme {
-    background-color: #ffa500 !important;
+    background-color: @theme !important;
     color:#000 !important; 
 }
 
 .theme-d1 {
-    background-color: #e69500 !important;
+    background-color: @theme-d1 !important;
     color:#fff !important;
 }
 
 .theme-d2 {
-    background-color: #cc8500 !important;
+    background-color: @theme-d2 !important;
     color:#fff !important;
 }
 
 .theme-d3 {
-    background-color: #b37400 !important;
+    background-color: @theme-d3 !important;
     color:#fff !important;
 }
 
 .theme-d4 {
-    background-color: #996300 !important;
+    background-color: @theme-d4 !important;
     color:#fff !important;
 }
 
 .theme-d5 {
-    background-color: #805300 !important;
+    background-color: @theme-d5 !important;
     color:#fff !important;
 }

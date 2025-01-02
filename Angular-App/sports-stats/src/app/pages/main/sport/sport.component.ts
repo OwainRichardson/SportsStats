@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Sport } from '../../types/sports/sport';
-import { SportsService } from '../../services/sports.service';
+import { Sport } from '../../../types/sports/sport';
+import { SportsService } from '../../../services/sports.service';
 import { CommonModule } from '@angular/common';
-import { Tournament } from '../../types/sports/Tournament';
-import { CardComponent } from '../../components/card/card.component';
+import { Tournament } from '../../../types/sports/tournament';
+import { CardComponent } from '../../../components/global/card/card.component';
 
 @Component({
   selector: 'app-sport',
