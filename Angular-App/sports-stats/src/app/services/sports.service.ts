@@ -25,7 +25,21 @@ import { SportSetting } from "../types/sports/sportSetting";
       return this.httpClient.get<Tournament[]>(`http://localhost:5253/sports/${sportId}/tournaments`);
     }
 
-    getSportSettingsById(sportId: string): Observable<SportSetting[]> {
+    getSportSettingsById(sportId: string) {
       return this.httpClient.get<SportSetting[]>(`http://localhost:5253/sports/${sportId}/settings`);
+    }
+
+    updateSportSetting(sportId: string, settingId: string, value: string) {
+      const payload = {
+        value: value
+      };
+
+      return this.httpClient.put(`http://localhost:5253/sports/${sportId}/settings/${settingId}`, 
+                                  JSON.stringify(payload), 
+                                  {
+                                    headers: {'Content-Type': 'application/json'},
+                                    observe: 'response'
+                                  }
+                                );
     }
   }

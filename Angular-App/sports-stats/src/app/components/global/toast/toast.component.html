@@ -1,0 +1,11 @@
+<ng-container *ngIf="success">
+    <div class="toast success">
+        {{message}}
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!success">
+    <div class="toast error">
+        {{message}}
+    </div>
+</ng-container>

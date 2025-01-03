@@ -1,0 +1,17 @@
+@import "./colours.less";
+
+button {
+    cursor: pointer;
+}
+
+.primary-button {
+    background-color: @theme;
+    color: #fff;
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+
+    &:hover {
+        background-color: @theme-d2;
+        box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+    }
+}

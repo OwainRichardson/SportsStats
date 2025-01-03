@@ -55,8 +55,8 @@ namespace SportsStats.Repositories.Repositories
                 throw new EntityNotFoundException($"Cound not find sport setting with id {settingId}");
             }
 
-            sportSetting.Name = model.Name;
-            sportSetting.Value = model.Value;
+            sportSetting.Name = model.Name ?? sportSetting.Name;
+            sportSetting.Value = model.Value ?? sportSetting.Value;
 
             await _sportsStatsContext.SaveChangesAsync();
         }
