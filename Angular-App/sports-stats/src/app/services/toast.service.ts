@@ -4,8 +4,7 @@ import {
     Injectable,
     ViewContainerRef
   } from '@angular/core'
-  import { ToastComponent } from '../components/global/toast/toast.component'
-
+  
   @Injectable({
     providedIn: 'root',
   })

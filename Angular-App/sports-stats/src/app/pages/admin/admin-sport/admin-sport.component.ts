@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewContainerRef, Inject, ElementRef } from '@angular/core';
+import { Component, ViewContainerRef, ElementRef } from '@angular/core';
 import { Sport } from '../../../types/sports/sport';
 import { SportsService } from '../../../services/sports.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,10 +8,13 @@ import { Breadcrumb } from '../../../types/admin/breadcrumb';
 import { SportSetting } from '../../../types/sports/sportSetting';
 import { AdminFormGroupComponent } from '../../../components/admin/admin-form-group/admin-form-group.component';
 import { ToastService } from '../../../services/toast.service';
+import { MetricAccordionComponent } from '../../../components/admin/metric-accordion/metric-accordion.component';
+import { Metric } from '../../../types/admin/metric';
+import { MetricsService } from '../../../services/metrics.service';
 
 @Component({
   selector: 'app-admin-sport',
-  imports: [CommonModule, AdminBreadcrumbComponent, AdminFormGroupComponent],
+  imports: [CommonModule, AdminBreadcrumbComponent, AdminFormGroupComponent, MetricAccordionComponent],
   templateUrl: './admin-sport.component.html',
   styleUrl: './admin-sport.component.less'
 })
@@ -20,14 +23,18 @@ export class AdminSportComponent {
   settings: SportSetting[];
   self: AdminSportComponent;
   viewContainerRef: ViewContainerRef;
+  metrics: Metric[];
 
   breadcrumbs: Breadcrumb[] = [
     {link: '/admin', label: 'Admin home' },
     {link: '/admin/sports', label: 'Sports'}
   ];
   
-  constructor(private route: ActivatedRoute, private sportService: SportsService, private toastService: ToastService, private elRef: ElementRef) {
-    // this.viewContainerRef = viewContainerRef;
+  constructor(private route: ActivatedRoute, 
+                private sportService: SportsService, 
+                private toastService: ToastService, 
+                private elRef: ElementRef,
+                private metricsService: MetricsService) {
     
     route.paramMap.subscribe(params => {
       const sportId = String(params.get('sportId'));
@@ -39,6 +46,10 @@ export class AdminSportComponent {
 
       sportService.getSportSettingsById(sportId).subscribe(settings => {
         this.settings = settings
+      })
+
+      metricsService.getMetrics(sportId).subscribe(metrics => {
+        this.metrics = metrics
       })
     });
   }

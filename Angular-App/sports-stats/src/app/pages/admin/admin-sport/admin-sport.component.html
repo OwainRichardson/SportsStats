@@ -3,4 +3,7 @@
 
     <h2>{{sport.name}}</h2>
     <app-admin-form-group *ngFor="let setting of settings" [id]="setting.id" [sportId]="sport.id" [name]="setting.name" [value]="setting.value" (onBlurEvent)="handleSave(setting.id, setting.name, sport.id, $event.value)"></app-admin-form-group>
+
+    <h3>Metrics</h3>
+    <app-metric-accordion  *ngFor="let metric of metrics" [metric]="metric"></app-metric-accordion>
 </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToastComponent } from './toast.component';
+import { MetricAccordionComponent } from './metric-accordion.component';
 
-describe('ToastComponent', () => {
-  let component: ToastComponent;
-  let fixture: ComponentFixture<ToastComponent>;
+describe('MetricAccordionComponent', () => {
+  let component: MetricAccordionComponent;
+  let fixture: ComponentFixture<MetricAccordionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToastComponent]
+      imports: [MetricAccordionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ToastComponent);
+    fixture = TestBed.createComponent(MetricAccordionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

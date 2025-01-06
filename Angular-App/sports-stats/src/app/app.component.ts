@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { HomeAreaComponent } from './areas/home-area/home-area.component';
 import { AdminAreaComponent } from './areas/admin-area/admin-area.component';
-import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -24,7 +24,6 @@ export class AppComponent {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.area = route.root.firstChild?.snapshot.data['area'];
-        console.log(route.root.firstChild?.snapshot.data['area']);
     });
   }
 
