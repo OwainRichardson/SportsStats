@@ -4,6 +4,7 @@ import { SportComponent } from './pages/main/sport/sport.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 import { AdminSportsComponent } from './pages/admin/admin-sports/admin-sports.component';
 import { AdminSportComponent } from './pages/admin/admin-sport/admin-sport.component';
+import { AdminSportSettingsComponent } from './pages/admin/admin-sport-settings/admin-sport-settings.component';
 
 export const routes: Routes = [
     { path: '', component: SportsComponent, title: 'Home', data: { area: 'main'}, pathMatch: 'full' },
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: 'sports/:sportId', component: SportComponent, title: 'Sport', data: { area: 'main'}  },
     { path: 'admin', component: AdminHomeComponent, title: 'Admin', data: { area: 'admin'}  },
     { path: 'admin/sports', component: AdminSportsComponent, title: 'Sports Admin', data: { area: 'admin'}  },
-    { path: 'admin/sports/:sportId/settings', component: AdminSportComponent, title: 'Sports Admin', data: { area: 'admin'}  },
+    { path: 'admin/sports/:sportId', component: AdminSportComponent, title: 'Sports Admin', data: { area: 'admin'}  },
+    { path: 'admin/sports/:sportId/settings', component: AdminSportSettingsComponent, title: 'Sports Admin', data: { area: 'admin'}  },
     { path: '**', component: SportsComponent, title: 'Home', data: { area: 'main'}  },
 ]; 

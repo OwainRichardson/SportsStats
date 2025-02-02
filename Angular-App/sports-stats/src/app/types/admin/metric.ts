@@ -1,3 +1,4 @@
 export interface Metric {
-    name: string
+    name: string,
+    isScoreModifier: boolean
   }
