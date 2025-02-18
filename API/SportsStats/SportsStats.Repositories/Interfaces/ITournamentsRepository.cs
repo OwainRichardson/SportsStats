@@ -7,6 +7,6 @@ namespace SportsStats.Repositories.Interfaces
     {
         Task CreateTournamentForSport(CreateTournamentInputModel model);
         Task<TournamentViewModel> GetTournament(Guid tournamentId);
-        Task<List<TournamentViewModel>> GetTournaments(Guid sportId);
+        IQueryable<TournamentViewModel> GetTournaments(Guid sportId);
     }
 }

@@ -34,7 +34,6 @@ builder.Services
 builder.Services
             .AddTransient<ISportsService, SportsService>()
             .AddTransient<IMetricsService, MetricsService>()
-            .AddTransient<ITournamentsService, TournamentsService>()
             .AddTransient<ISportSettingsService, SportSettingsService>();
 
 var app = builder.Build();

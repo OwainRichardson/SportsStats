@@ -22,7 +22,8 @@ namespace SportsStats.Repositories.Repositories
             {
                 Id = Guid.NewGuid(),
                 Name = model.Name,
-                Date = model.Date,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
                 Location = model.Location,
                 SportId = model.SportId,
                 CreatedDate = DateTime.UtcNow
@@ -40,27 +41,29 @@ namespace SportsStats.Repositories.Repositories
                                 {
                                     Id = tournament.Id,
                                     Name = tournament.Name,
-                                    Date = tournament.Date,
+                                    StartDate = tournament.StartDate,
+                                    EndDate = tournament.EndDate,
                                     Location = tournament.Location,
                                     SportId = tournament.SportId
                                 })
                                 .FirstOrDefaultAsync(tournament => tournament.Id == tournamentId);
         }
 
-        public async Task<List<TournamentViewModel>> GetTournaments(Guid sportId)
+        public IQueryable<TournamentViewModel> GetTournaments(Guid sportId)
         {
-            return await _sportsStatsContext.Tournaments
+            return _sportsStatsContext.Tournaments
                                 .AsNoTracking()
                                 .Where(tournament => tournament.SportId == sportId)
                                 .Select(tournament => new TournamentViewModel
                                 {
                                     Id = tournament.Id,
                                     Name = tournament.Name,
-                                    Date = tournament.Date,
                                     Location = tournament.Location,
-                                    SportId = tournament.SportId
+                                    SportId = tournament.SportId,
+                                    StartDate = tournament.StartDate,
+                                    EndDate = tournament.EndDate
                                 })
-                                .ToListAsync();
+                                .AsQueryable();
         }
     }
 }

@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using SportsStats.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using SportsStats.Models.InputModels;
-using SportsStats.Models.Metrics;
 using SportsStats.Models.ViewModels;
-using SportsStats.Services.Interfaces;
+using SportsStats.Repositories.Interfaces;
 
 namespace SportsStats.Controllers
 {
@@ -11,28 +10,67 @@ namespace SportsStats.Controllers
     public class TournamentsController : ControllerBase
     {
         private readonly ILogger<TournamentsController> _logger;
-        private readonly ITournamentsService _tournamentsService;
+        private readonly ITournamentsRepository _tournamentsRepository;
 
-        public TournamentsController(ILogger<TournamentsController> logger, ITournamentsService tournamentsService)
+        public TournamentsController(ILogger<TournamentsController> logger, ITournamentsRepository tournamentsRepository)
         {
             _logger = logger;
-            _tournamentsService = tournamentsService;
+            _tournamentsRepository = tournamentsRepository;
         }
 
         [HttpGet]
-        [Route("sports/{sportId}/tournaments")]
+        [Route("sports/{sportId}/tournaments/future")]
         [ProducesResponseType(typeof(List<TournamentViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get(Guid sportId)
+        public async Task<IActionResult> GetFuture(Guid sportId)
         {
-            return Ok(await _tournamentsService.GetTournaments(sportId));
+            IQueryable<TournamentViewModel> tournaments = _tournamentsRepository.GetTournaments(sportId);
+
+            List<TournamentViewModel> futureTournaments = await tournaments
+                                                                    .Where(tournaments => tournaments.StartDate.Date > DateTime.UtcNow.Date)
+                                                                    .OrderBy(tournament => tournament.StartDate)
+                                                                    .ToListAsync();
+            
+            return Ok(futureTournaments);
+        }
+
+        [HttpGet]
+        [Route("sports/{sportId}/tournaments/active")]
+        [ProducesResponseType(typeof(List<TournamentViewModel>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetActive(Guid sportId)
+        {
+            IQueryable<TournamentViewModel> tournaments = _tournamentsRepository.GetTournaments(sportId);
+
+            List<TournamentViewModel> activeTournaments = await tournaments
+                                                                    .Where(tournament => DateTime.UtcNow.Date >= tournament.StartDate.Date && DateTime.UtcNow.Date <= tournament.EndDate.Date)
+                                                                    .OrderBy(tournament => tournament.StartDate)
+                                                                    .ToListAsync();
+
+            return Ok(activeTournaments);
+        }
+
+        [HttpGet]
+        [Route("sports/{sportId}/tournaments/past")]
+        [ProducesResponseType(typeof(List<TournamentViewModel>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPast(Guid sportId)
+        {
+            IQueryable<TournamentViewModel> tournaments = _tournamentsRepository.GetTournaments(sportId);
+
+            List<TournamentViewModel> pastTournaments = await tournaments
+                                                                .Where(tournament => tournament.EndDate.Date < DateTime.UtcNow.Date)
+                                                                .OrderByDescending(tournament => tournament.EndDate)
+                                                                .ToListAsync();
+
+            return Ok(pastTournaments);
         }
 
         [HttpPost]
         [Route("sports/{sportId}/tournaments")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Create(CreateTournamentInputModel model)
+        public async Task<IActionResult> Create([FromRoute] Guid sportId, CreateTournamentInputModel model)
         {
-            await _tournamentsService.CreateTournamentForSport(model);
+            model.SportId = sportId;
+
+            await _tournamentsRepository.CreateTournamentForSport(model);
 
             return NoContent();
         }
@@ -42,7 +80,7 @@ namespace SportsStats.Controllers
         [ProducesResponseType(typeof(TournamentViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTournament([FromRoute] Guid tournamentId)
         {
-            return Ok(await _tournamentsService.GetTournament(tournamentId));
+            return Ok(await _tournamentsRepository.GetTournament(tournamentId));
         }
     }
 }

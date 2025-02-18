@@ -3,18 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Sport } from '../../../types/sports/sport';
 import { SportsService } from '../../../services/sports.service';
 import { CommonModule } from '@angular/common';
-import { Tournament } from '../../../types/sports/tournament';
 import { CardComponent } from '../../../components/global/card/card.component';
 
 @Component({
   selector: 'app-sport',
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule],
   templateUrl: './sport.component.html',
   styleUrl: './sport.component.less'
 })
 export class SportComponent {
   sport: Sport;
-  tournaments: Tournament[];
   loading = true;
   
   constructor(private route: ActivatedRoute, private sportService: SportsService) {
@@ -24,12 +22,8 @@ export class SportComponent {
       sportService.getSportById(sportId).subscribe(sport => {
           this.sport = sport
       });
-
-      sportService.getTournamentsBySportId(sportId).subscribe(tournaments => {
-        this.tournaments = tournaments;
-      });
     });
 
-    this.loading = this.tournaments && this.sport ? true : false;
+    this.loading = this.sport ? true : false;
   }
 }
