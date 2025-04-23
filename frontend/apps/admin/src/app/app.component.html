@@ -1,2 +1,11 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="h-screen flex">
+    <div id="nav" class="w-1/4 bg-yellow-400 p-8 flex flex-col items-center">
+        <div class="logo w-48 h-48 bg-contain bg-no-repeat cursor-pointer" routerLink="/"></div>
+        <div class="w-full text-center text-2xl">
+            <a class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block" routerLink="/sports" routerLinkActive="active">Sports</a>
+        </div>
+    </div>
+    <div id="content" class="w-3/4 p-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
