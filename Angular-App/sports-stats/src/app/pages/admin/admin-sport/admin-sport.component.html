@@ -1,9 +1,0 @@
-<div class="container column-container relative">
-    <app-admin-breadcrumb [links]="breadcrumbs"></app-admin-breadcrumb>
-
-    <h2>{{sport.name}}</h2>
-    <div class="row-container wrap">
-        <app-card name="Settings" icon="settings" [link]="'/admin/sports/' + sport.id + '/settings'"></app-card>
-        <app-card name="Tournaments" icon="trophy" [link]="'/admin/sports/' + sport.id + '/tournaments'"></app-card>
-    </div>
-</div>
