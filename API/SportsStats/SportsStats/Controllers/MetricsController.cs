@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Metrics;
-using SportsStats.Services.Interfaces;
+using SportsStats.Repositories.Interfaces;
 
 namespace SportsStats.Controllers
 {
     [ApiController]
     public class MetricsController : ControllerBase
     {
-        private readonly IMetricsService _metricsService;
+        private readonly IMetricsRepository _metricsRepository;
 
-        public MetricsController(IMetricsService metricsService)
+        public MetricsController(IMetricsRepository metricsRepository)
         {
-            _metricsService = metricsService;
+            _metricsRepository = metricsRepository;
         }
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace SportsStats.Controllers
         [ProducesResponseType(typeof(List<MetricViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid sportId)
         {
-            return Ok(await _metricsService.GetMetricsForSport(sportId));
+            return Ok(await _metricsRepository.GetMetricsForSport(sportId));
         }
 
         [HttpPost]
@@ -28,7 +28,7 @@ namespace SportsStats.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Create(CreateMetricInputModel model)
         {
-            await _metricsService.CreateMetricForSport(model);
+            await _metricsRepository.CreateMetricForSport(model);
 
             return NoContent();
         }
@@ -38,7 +38,7 @@ namespace SportsStats.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Update(UpdateMetricInputModel model)
         {
-            await _metricsService.UpdateMetricForSport(model);
+            await _metricsRepository.UpdateMetricForSport(model);
 
             return NoContent();
         }

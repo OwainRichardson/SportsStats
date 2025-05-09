@@ -28,11 +28,20 @@ namespace SportsStats.Data.Contexts
             modelBuilder
                 .Entity<SportSetting>()
                 .HasKey(setting => setting.Id);
+
+            modelBuilder
+                .Entity<User>()
+                .HasKey(user => user.Id);
+
+            modelBuilder
+                .Entity<User>()
+                .HasAlternateKey(user => user.Email);
         }
 
         public DbSet<Sport> Sports { get; set; }
         public DbSet<Metric> Metrics { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<SportSetting> SportSettings { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Sports;
-using SportsStats.Services.Interfaces;
+using SportsStats.Repositories.Interfaces;
 
 namespace SportsStats.Controllers
 {
@@ -9,12 +9,12 @@ namespace SportsStats.Controllers
     public class SportSettingsController : ControllerBase
     {
         private readonly ILogger<SportsController> _logger;
-        private readonly ISportSettingsService _sportSettingsService;
+        private readonly ISportSettingsRepository _sportSettingsRepository;
 
-        public SportSettingsController(ILogger<SportsController> logger, ISportSettingsService sportSettingsService)
+        public SportSettingsController(ILogger<SportsController> logger, ISportSettingsRepository sportSettingsRepository)
         {
             _logger = logger;
-            _sportSettingsService = sportSettingsService;
+            _sportSettingsRepository = sportSettingsRepository;
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace SportsStats.Controllers
         [ProducesResponseType(typeof(List<SportSettingDetail>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid sportId)
         {
-            return Ok(await _sportSettingsService.GetSportSettings(sportId));
+            return Ok(await _sportSettingsRepository.GetSportSettings(sportId));
         }
 
         [HttpPost]
@@ -31,7 +31,7 @@ namespace SportsStats.Controllers
         {
             model.SportId = sportId;
 
-            await _sportSettingsService.CreateSportSetting(model);
+            await _sportSettingsRepository.CreateSportSetting(model);
 
             return NoContent();
         }
@@ -40,7 +40,7 @@ namespace SportsStats.Controllers
         [Route("sports/{sportId}/settings/{settingId}")]
         public async Task<IActionResult> Update([FromRoute] Guid settingId, [FromBody] UpdateSportSettingInputModel model)
         {
-            await _sportSettingsService.UpdateSportSetting(settingId, model);
+            await _sportSettingsRepository.UpdateSportSetting(settingId, model);
 
             return NoContent();
         }

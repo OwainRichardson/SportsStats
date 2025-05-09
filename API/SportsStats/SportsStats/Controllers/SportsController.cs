@@ -1,7 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Sports;
-using SportsStats.Services.Interfaces;
+using SportsStats.Repositories.Interfaces;
 
 namespace SportsStats.Controllers
 {
@@ -9,20 +10,19 @@ namespace SportsStats.Controllers
     [Route("[controller]")]
     public class SportsController : ControllerBase
     {
-        private readonly ILogger<SportsController> _logger;
-        private readonly ISportsService _sportsService;
+        private readonly ISportsRepository _sportsRepository;
 
-        public SportsController(ILogger<SportsController> logger, ISportsService sportsService)
+        public SportsController(ISportsRepository sportsRepository)
         {
-            _logger = logger;
-            _sportsService = sportsService;
+            _sportsRepository = sportsRepository;
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _sportsService.GetSports());
+            return Ok(await _sportsRepository.GetSports());
         }
 
         [HttpGet]
@@ -30,13 +30,13 @@ namespace SportsStats.Controllers
         [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(Guid sportId)
         {
-            return Ok(await _sportsService.GetSport(sportId));
+            return Ok(await _sportsRepository.GetSport(sportId));
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateSportInputModel model)
         {
-            await _sportsService.CreateSport(model);
+            await _sportsRepository.CreateSport(model);
 
             return NoContent();
         }
