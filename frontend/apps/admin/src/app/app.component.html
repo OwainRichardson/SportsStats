@@ -7,8 +7,8 @@
         </div>
 
         <div class="w-full text-center text-2xl">
-            <a class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" routerLink="/sports" routerLinkActive="active">Sports</a>
             <a *ngIf="!isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" routerLink="/account/login" routerLinkActive="active">Login</a>
+            <a *ngIf="isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" routerLink="/sports" routerLinkActive="active">Sports</a>
             <a *ngIf="isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" tabindex="0" (keydown)="logout()" (click)="logout()">Logout</a>
         </div>
     </div>
