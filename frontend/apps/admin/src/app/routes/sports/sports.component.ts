@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SportsServce } from '../../shared/services/sportsService';
 import { Sport } from '../../shared/types/sports/sport';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sports',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './sports.component.html',
 })
 export class SportsComponent {

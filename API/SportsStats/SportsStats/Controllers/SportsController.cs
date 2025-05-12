@@ -8,6 +8,7 @@ namespace SportsStats.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class SportsController : ControllerBase
     {
         private readonly ISportsRepository _sportsRepository;
@@ -18,7 +19,6 @@ namespace SportsStats.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         [ProducesResponseType(typeof(List<SportDetails>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {

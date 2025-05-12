@@ -11,4 +11,8 @@ export class SportsServce {
     getSports(): Observable<Sport[]> {
         return this.http.get<Sport[]>('http://localhost:5253/sports', this.authService.getRequestHeaders());
     }
+
+    getSport(sportId: string): Observable<Sport> {
+        return this.http.get<Sport>(`http://localhost:5253/sports/${sportId}`, this.authService.getRequestHeaders());
+    }
 }
