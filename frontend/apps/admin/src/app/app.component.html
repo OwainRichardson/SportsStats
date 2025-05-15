@@ -2,14 +2,14 @@
     <div id="nav" class="w-1/4 bg-green-600 p-8 flex flex-col items-center">
         <div class="logo w-48 h-48 bg-contain bg-no-repeat cursor-pointer" routerLink="/"></div>
 
-        <div *ngIf="isAuthenticated" class="text-white text-2xl">
+        <div *ngIf="isAuthenticated" class="text-white text-2xl mb-4">
             Hello, {{userDetails?.firstName}}
         </div>
 
         <div class="w-full text-center text-2xl">
-            <a *ngIf="!isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" routerLink="/account/login" routerLinkActive="active">Login</a>
-            <a *ngIf="isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" routerLink="/sports" routerLinkActive="active">Sports</a>
-            <a *ngIf="isAuthenticated" class="py-8 text-white hover:bg-white hover:text-yellow-400 w-full inline-block cursor-pointer" tabindex="0" (keydown)="logout()" (click)="logout()">Logout</a>
+            <a *ngIf="!isAuthenticated" class="py-8 text-white hover:underline w-full inline-block cursor-pointer" routerLink="/account/login" routerLinkActive="active">Login</a>
+            <a *ngIf="isAuthenticated" class="py-8 text-white hover:underline w-full inline-block cursor-pointer" routerLink="/sports" routerLinkActive="active">Sports</a>
+            <a *ngIf="isAuthenticated" class="py-8 text-white hover:underline w-full inline-block cursor-pointer" tabindex="0" (keydown)="logout()" (click)="logout()">Logout</a>
         </div>
     </div>
     <div id="content" class="w-3/4 p-8">
