@@ -1,0 +1,24 @@
+<h1 class="text-4xl font-bold mb-12">Create New Sport</h1>
+
+<div class="w-1/2">
+    <div class="mb-4">
+        <label for="sport-name" class="block mb-2">Name</label>
+        <input type="text" 
+                id="sport-name" 
+                placeholder="Sport name" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+
+    <div class="mb-4">
+        <label for="sport-icon" class="block mb-2">Icon</label>
+        <input type="text" 
+                id="sport-icon" 
+                placeholder="Sport icon" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+
+    <div class="mb-4">
+        <button class="w-full bg-green-600 text-white rounded-xl py-4 hover:font-bold hover:shadow-md"
+                (click)="createSport()">Create Sport</button>
+    </div>
+</div>

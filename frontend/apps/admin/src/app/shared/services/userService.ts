@@ -9,8 +9,6 @@ export class UserService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     getUserDetails(): Observable<UserDetails> {
-        const userId = localStorage.getItem('user-id');
-
-        return this.http.get<UserDetails>('http://localhost:5253/Users/' + userId, this.authService.getRequestHeaders());
+        return this.http.get<UserDetails>('http://localhost:5253/users/current', this.authService.getRequestHeaders());
     }
 }

@@ -6,7 +6,7 @@ namespace SportsStats.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> CreateAccount(UserLoginDetailsInputModel model);
+        Task<User> CreateAccount(CreateUserInputModel model);
         Task<UserDetails> GetUserDetails(Guid userId);
         Task<User> Login(UserLoginDetailsInputModel model);
     }

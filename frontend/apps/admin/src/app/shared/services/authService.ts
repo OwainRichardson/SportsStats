@@ -23,7 +23,7 @@ export class AuthService {
         });
     }
 
-    async createAccount(email: string, password: string) {
+    async createAccount(email: string, password: string, firstName: string, lastName: string) {
         const passwordHash = await this.hashPassword(password);
         
         const httpOptions = {
@@ -32,7 +32,7 @@ export class AuthService {
             })
           };
 
-        this.http.post<UserLoginResponse>('http://localhost:5253/account/createaccount', {email, passwordHash}, httpOptions).subscribe(response => {
+        this.http.post<UserLoginResponse>('http://localhost:5253/account/createaccount', {email, passwordHash, firstName, lastName}, httpOptions).subscribe(response => {
             this.setSession(response.accessToken);
             this.router.navigate(['/']);
         });
@@ -48,7 +48,6 @@ export class AuthService {
 
     public logout() {
         localStorage.removeItem('access-token');
-        localStorage.removeItem('user-id');
         this.router.navigate(['/account/login']);
     }
 
@@ -70,10 +69,6 @@ export class AuthService {
     }
 
     private setSession(accessToken: string) {
-        const helper = new JwtHelperService();
-        const decodedToken = helper.decodeToken(accessToken);
-
-        localStorage.setItem('user-id', decodedToken.UserId);
         localStorage.setItem('access-token', accessToken);
     }
 }

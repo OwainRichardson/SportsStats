@@ -14,7 +14,9 @@ export class CreateAccountComponent {
   async createAccount() {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
+    const firstName = document.getElementById('firstName') as HTMLInputElement;
+    const lastName = document.getElementById('lastName') as HTMLInputElement;
 
-    await this.authService.createAccount(email.value, password.value);
+    await this.authService.createAccount(email.value, password.value, firstName.value, lastName.value);
   }
 }

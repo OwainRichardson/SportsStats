@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportsStats.Models.Extensions;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Sports;
 using SportsStats.Repositories.Interfaces;
@@ -36,7 +37,7 @@ namespace SportsStats.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateSportInputModel model)
         {
-            await _sportsRepository.CreateSport(model);
+            await _sportsRepository.CreateSport(model, User.UserId());
 
             return NoContent();
         }

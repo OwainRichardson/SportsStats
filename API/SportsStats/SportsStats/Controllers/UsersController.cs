@@ -7,6 +7,7 @@ namespace SportsStats.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
@@ -18,10 +19,12 @@ namespace SportsStats.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("{userId}")]
-        public async Task<UserDetails> GetUserDetails([FromRoute] Guid userId)
+        [Route("current")]
+        public async Task<UserDetails> GetUserDetails()
         {
-            return await _userRepository.GetUserDetails(userId);
+            string userId = User.Claims.First(c => c.Type == "UserId").Value;
+
+            return await _userRepository.GetUserDetails(new Guid(userId));
         }
     }
 }

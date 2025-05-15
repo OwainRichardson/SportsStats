@@ -1,0 +1,18 @@
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { SportSetting } from "../types/sports/sport-setting";
+import { Observable } from "rxjs";
+import { AuthService } from "./authService";
+
+@Injectable({ providedIn: 'root' })
+export class SportsSettingsService {
+    constructor(private http: HttpClient, private authService: AuthService) { }
+
+    getSportSettings(sportId: string): Observable<SportSetting[]> {
+        return this.http.get<SportSetting[]>(`http://localhost:5253/sports/${sportId}/settings`, this.authService.getRequestHeaders());
+    }
+
+    updateSportSetting(value: string, settingId: string, sportId: string): Observable<SportSetting> {
+        return this.http.put<SportSetting>(`http://localhost:5253/sports/${sportId}/settings/${settingId}`, {value}, this.authService.getRequestHeaders());
+    }
+}

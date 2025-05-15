@@ -1,10 +1,8 @@
-using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SportsStats.Data.Entities;
 using SportsStats.Models.Constants;
 using SportsStats.Models.InputModels;
-using SportsStats.Models.Metrics;
 using SportsStats.Models.ViewModels;
 using SportsStats.Repositories.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,7 +34,7 @@ namespace SportsStats.Controllers
 
         [HttpPost]
         [Route("CreateAccount")]
-        public async Task<IActionResult> CreateAccount([FromBody] UserLoginDetailsInputModel model)
+        public async Task<IActionResult> CreateAccount([FromBody] CreateUserInputModel model)
         {
             User user = await _userRepository.CreateAccount(model);
             string token = GenerateJwtToken(user);

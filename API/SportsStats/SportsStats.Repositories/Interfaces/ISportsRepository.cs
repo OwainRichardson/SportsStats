@@ -5,7 +5,7 @@ namespace SportsStats.Repositories.Interfaces
 {
     public interface ISportsRepository
     {
-        Task CreateSport(CreateSportInputModel model);
+        Task CreateSport(CreateSportInputModel model, string createdByUserId);
         Task<SportDetails> GetSport(Guid sportId);
         Task<List<SportDetails>> GetSports();
     }

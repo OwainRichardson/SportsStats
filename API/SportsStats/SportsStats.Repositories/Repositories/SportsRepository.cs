@@ -16,14 +16,15 @@ namespace SportsStats.Repositories.Repositories
             _sportsStatsContext = sportsStatsContext;
         }
 
-        public async Task CreateSport(CreateSportInputModel model)
+        public async Task CreateSport(CreateSportInputModel model, string createdByUserId)
         {
             Sport newSport = new Sport
             {
                 Id = Guid.NewGuid(),
                 Name = model.Name,
                 CreatedDate = DateTime.UtcNow,
-                Icon = model.Icon
+                Icon = model.Icon,
+                CreatedBy = new Guid(createdByUserId)
             };
 
             _sportsStatsContext.Sports.Add(newSport);

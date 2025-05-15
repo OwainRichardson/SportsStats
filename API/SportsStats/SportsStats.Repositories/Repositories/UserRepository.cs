@@ -16,14 +16,17 @@ namespace SportsStats.Repositories.Repositories
             _sportsStatsContext = sportsStatsContext;
         }
 
-        public async Task<User> CreateAccount(UserLoginDetailsInputModel model)
+        public async Task<User> CreateAccount(CreateUserInputModel model)
         {
             User newUser = new()
             {
                 Id = Guid.NewGuid(),
                 Email = model.Email,
-                Password = model.PasswordHash
+                Password = model.PasswordHash,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
+
             await _sportsStatsContext.Users.AddAsync(newUser);
 
             await _sportsStatsContext.SaveChangesAsync();

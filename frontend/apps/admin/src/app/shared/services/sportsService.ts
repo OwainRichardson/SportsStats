@@ -15,4 +15,8 @@ export class SportsServce {
     getSport(sportId: string): Observable<Sport> {
         return this.http.get<Sport>(`http://localhost:5253/sports/${sportId}`, this.authService.getRequestHeaders());
     }
+
+    createSport(name: string, icon: string): Observable<Sport> {
+        return this.http.post<Sport>('http://localhost:5253/sports', {name, icon}, this.authService.getRequestHeaders());
+    }
 }
