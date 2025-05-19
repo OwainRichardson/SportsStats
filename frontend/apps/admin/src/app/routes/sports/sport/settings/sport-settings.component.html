@@ -14,34 +14,130 @@
 
 <div class="border-b-2 border-green-600 w-full mt-8 mb-8"></div>
 
-<h2 class="text-4xl mb-12">{{sport.name}} metrics</h2>
+<div class="flex flex-row items-center mb-6 h-16">
+    <h2 class="text-4xl">{{sport.name}} metrics</h2>
+    <div 
+        class="border border-green-600 rounded-xl px-12 h-3/4 ml-12 font-material-icons text-black flex items-center cursor-pointer hover:bg-green-600 hover:text-white"
+        (click)="showNewMetric()"
+        (keydown)="showNewMetric()"
+        tabindex="0">add</div>
+</div>
 <div class="flex flex-col">
-    <div class="w-full h-24 border border-green-600 rounded-xl mb-6 flex flex-row items-center px-8 relative">
-        <h3>Try scored</h3>
-        <div class="flex flex-row ml-8">
-            <div class="mr-2 bg-red-400 h-10 w-10 rounded-full items-center justify-center flex">SM</div>
-            <div class="bg-yellow-400 h-10 w-10 rounded-full items-center justify-center flex">T</div>
-        </div>
-        <div class="font-material-icons text-2xl absolute right-8">
-            keyboard_arrow_down
+    <div id="new-metric" class="hidden w-full border border-green-600 rounded-xl mb-6 flex flex-col px-8 pt-8 relative transition ease-in-out duration-1000">
+        <div id="new-metric-edit">
+            <div class="flex flex-col w-full justify-center pb-4">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="new metric-name" class="block mb-2 mr-6 w-32">Metric name</label>
+                    <input 
+                        id="new-metric-name" 
+                        type="text" 
+                        value="New metric" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md"/>
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-6">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="new-is-score-modifier" class="block mb-2 mr-6 w-32">Is score modifier</label>
+                    <input 
+                        id="new-is-score-modifier" 
+                        type="checkbox" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md cursor-pointer"  />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-4">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="new-score-modifier" class="block mb-2 mr-6 w-32">Score modifier</label>
+                    <input 
+                        id="new-score-modifier" 
+                        type="text" 
+                        value="0" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md" />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-6">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="new-is-turnover" class="block mb-2 mr-6 w-32">Is turnover</label>
+                    <input 
+                        id="new-is-turnover"
+                        type="checkbox" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md cursor-pointer" />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-6">
+                <button 
+                    role="button" 
+                    class="bg-green-600 rounded-xl text-white py-4 cursor-pointer w-48"
+                    tabindex="0"
+                    (click)="createMetric()"
+                    (keydown)="createMetric()">Save</button>
+            </div>
         </div>
     </div>
-    <div class="w-full h-24 border border-green-600 rounded-xl mb-6 flex flex-row items-center px-8 relative">
-        Turnovers
-        <div class="flex flex-row ml-8">
-            <div class="bg-yellow-400 h-10 w-10 rounded-full items-center justify-center flex">T</div>
+    <div *ngFor="let metric of metrics" id="metric-{{metric.id}}" class="w-full border border-green-600 rounded-xl mb-6 flex flex-col px-8 relative transition ease-in-out duration-1000">
+        <div class="flex flex-row w-full items-center h-24">
+            <h3>{{metric.name}}</h3>
+            <div class="flex flex-row ml-8">
+                <div *ngIf="metric.isScoreModifier" class="mr-2 bg-red-400 h-10 w-10 rounded-full items-center justify-center flex">SM</div>
+                <div *ngIf="metric.isTurnover" class="mr-2 bg-yellow-400 h-10 w-10 rounded-full items-center justify-center flex">T</div>
+            </div>
+            <div class="font-material-icons text-2xl absolute right-8 cursor-pointer"
+                tabindex="0"
+                (click)="deleteMetric(metric.id)"
+                (keydown)="deleteMetric(metric.id)">
+                delete
+            </div>
+            <div class="font-material-icons text-2xl absolute right-16 cursor-pointer"
+                tabindex="0"
+                (click)="toggleMetricEdit(metric.id)"
+                (keydown)="toggleMetricEdit(metric.id)">
+                edit
+            </div>
         </div>
-        <div class="font-material-icons text-2xl absolute right-8">
-            keyboard_arrow_down
-        </div>
-    </div>
-    
-    <div class="w-full h-24 border border-green-600 rounded-xl mb-6 flex flex-row items-center px-8 relative">
-        Penalties
-        <div class="flex flex-row ml-8">
-        </div>
-        <div class="font-material-icons text-2xl absolute right-8 hover:cursor-pointer">
-            keyboard_arrow_down
+        <div class="hidden" id="metric-edit-{{metric.id}}">
+            <div class="flex flex-col w-full justify-center pb-4">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="metric-name-{{metric.id}}" class="block mb-2 mr-6 w-32">Metric name</label>
+                    <input 
+                        id="metric-name-{{metric.id}}" 
+                        type="text" 
+                        value="{{metric.name}}" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md"
+                        (blur)="updateMetric(metric)" />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-6">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="is-score-modifier-{{metric.id}}" class="block mb-2 mr-6 w-32">Is score modifier</label>
+                    <input 
+                        id="is-score-modifier-{{metric.id}}" 
+                        type="checkbox" 
+                        checked="{{metric.isScoreModifier ? 'checked' : ''}}" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md cursor-pointer" 
+                        (change)="updateMetric(metric)" />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-4">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="score-modifier-{{metric.id}}" class="block mb-2 mr-6 w-32">Score modifier</label>
+                    <input 
+                        id="score-modifier-{{metric.id}}" 
+                        type="text" 
+                        value="{{metric.scoreModifier}}" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md"
+                        (blur)="updateMetric(metric)" />
+                </div>
+            </div>
+            <div class="flex flex-col w-full justify-center pb-6">
+                <div class="flex flex-row items-center space-between w-1/2">
+                    <label for="is-turnover-{{metric.id}}" class="block mb-2 mr-6 w-32">Is turnover</label>
+                    <input 
+                        id="is-turnover-{{metric.id}}"
+                        type="checkbox" 
+                        checked="{{metric.isTurnover ? 'checked' : ''}}" 
+                        class="p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md cursor-pointer" 
+                        (change)="updateMetric(metric)" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -21,12 +21,13 @@ namespace SportsStats.Repositories.Repositories
             Metric newMetric = new Metric
             {
                 Id = Guid.NewGuid(),
-                Name = model.MetricName,
+                Name = model.Name,
                 SportId = model.SportId,
                 CreatedDate = DateTime.UtcNow,
                 IsScoreModifier = model.IsScoreModifier,
                 ScoreModifier = model.ScoreModifier,
-                IsTurnover = model.IsTurnover
+                IsTurnover = model.IsTurnover,
+                IsActive = true
             };
 
             await _sportsStatsContext.Metrics.AddAsync(newMetric);
@@ -37,7 +38,8 @@ namespace SportsStats.Repositories.Repositories
         {
             return await _sportsStatsContext.Metrics
                                 .AsNoTracking()
-                                .Where(metric => metric.SportId == sportId)
+                                .Where(metric => metric.SportId == sportId
+                                        && metric.IsActive)
                                 .Select(metric => new MetricViewModel
                                 {
                                     Id = metric.Id,
@@ -55,7 +57,22 @@ namespace SportsStats.Repositories.Repositories
         {
             Metric metric = await _sportsStatsContext.Metrics.FirstOrDefaultAsync(metric => metric.Id == model.Id);
 
-            // ToDo - update properties
+            metric.Name = model.Name;
+            metric.IsScoreModifier = model.IsScoreModifier;
+            metric.ScoreModifier = model.ScoreModifier;
+            metric.IsTurnover = model.IsTurnover;
+            metric.UpdatedDate = DateTime.UtcNow;
+
+            await _sportsStatsContext.SaveChangesAsync();
+        }
+
+        public async Task MarkMetricAsInactive(Guid metricId)
+        {
+            Metric metric = await _sportsStatsContext.Metrics.FirstOrDefaultAsync(metric => metric.Id ==  metricId);
+
+            metric.IsActive = false;
+
+            await _sportsStatsContext.SaveChangesAsync();
         }
     }
 }

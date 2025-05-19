@@ -26,8 +26,10 @@ namespace SportsStats.Controllers
         [HttpPost]
         [Route("sports/{sportId}/metrics")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Create(CreateMetricInputModel model)
+        public async Task<IActionResult> Create([FromRoute] Guid sportId, [FromBody] CreateMetricInputModel model)
         {
+            model.SportId = sportId;
+
             await _metricsRepository.CreateMetricForSport(model);
 
             return NoContent();
@@ -39,6 +41,16 @@ namespace SportsStats.Controllers
         public async Task<IActionResult> Update(UpdateMetricInputModel model)
         {
             await _metricsRepository.UpdateMetricForSport(model);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("sports/{sportId}/metrics/{metricId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> MarkMetricAsInactive([FromRoute] Guid metricId)
+        {
+            await _metricsRepository.MarkMetricAsInactive(metricId);
 
             return NoContent();
         }

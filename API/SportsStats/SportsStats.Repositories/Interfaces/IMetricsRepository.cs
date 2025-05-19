@@ -8,5 +8,6 @@ namespace SportsStats.Repositories.Interfaces
         Task CreateMetricForSport(CreateMetricInputModel model);
         Task<List<MetricViewModel>> GetMetricsForSport(Guid sportId);
         Task UpdateMetricForSport(UpdateMetricInputModel model);
+        Task MarkMetricAsInactive(Guid metricId);
     }
 }

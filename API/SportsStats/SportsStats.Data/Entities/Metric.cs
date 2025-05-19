@@ -16,5 +16,6 @@ namespace SportsStats.Data.Entities
         public bool IsScoreModifier { get; set; }
         public int? ScoreModifier { get; set; }
         public bool IsTurnover { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
