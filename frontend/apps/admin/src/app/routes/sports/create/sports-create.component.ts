@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SportsServce } from '../../../shared/services/sportsService';
+import { SportsService } from '../../../shared/services/sportsService';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './sports-create.component.html'
 })
 export class SportsCreateComponent {
-  constructor(private sportsService: SportsServce, private router: Router) {}
+  constructor(private sportsService: SportsService, private router: Router) {}
   
   createSport() {
     const sportName = document.getElementById('sport-name') as HTMLInputElement;

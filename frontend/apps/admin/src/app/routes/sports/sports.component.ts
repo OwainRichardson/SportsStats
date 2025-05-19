@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SportsServce } from '../../shared/services/sportsService';
+import { SportsService } from '../../shared/services/sportsService';
 import { Sport } from '../../shared/types/sports/sport';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class SportsComponent {
   sports: Sport[] = [];
-  constructor(private sportsService: SportsServce) {
+  constructor(private sportsService: SportsService) {
     this.sportsService.getSports().subscribe(sports => {
       this.sports = sports;
     });

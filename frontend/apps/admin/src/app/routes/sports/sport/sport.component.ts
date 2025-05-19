@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SportsServce } from '../../../shared/services/sportsService';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Sport } from '../../../shared/types/sports/sport';
+import { SportsService } from '../../../shared/services/sportsService';
 
 @Component({
   selector: 'app-sport',
@@ -12,7 +12,7 @@ import { Sport } from '../../../shared/types/sports/sport';
 export class SportComponent implements OnInit {
   sport!: Sport;
 
-  constructor(private sportsService: SportsServce, private route: ActivatedRoute)
+  constructor(private sportsService: SportsService, private route: ActivatedRoute)
   {
 
   }

@@ -16,6 +16,9 @@ export class LoginComponent {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
 
+    const loginButton = document.getElementById('login-button') as HTMLInputElement;
+    loginButton.disabled = true;
+
     this.authService.login(email.value, password.value);
   }
 }

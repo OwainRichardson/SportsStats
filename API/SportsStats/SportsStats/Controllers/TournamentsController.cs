@@ -9,12 +9,10 @@ namespace SportsStats.Controllers
     [ApiController]
     public class TournamentsController : ControllerBase
     {
-        private readonly ILogger<TournamentsController> _logger;
         private readonly ITournamentsRepository _tournamentsRepository;
 
-        public TournamentsController(ILogger<TournamentsController> logger, ITournamentsRepository tournamentsRepository)
+        public TournamentsController(ITournamentsRepository tournamentsRepository)
         {
-            _logger = logger;
             _tournamentsRepository = tournamentsRepository;
         }
 
@@ -66,7 +64,7 @@ namespace SportsStats.Controllers
         [HttpPost]
         [Route("sports/{sportId}/tournaments")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Create([FromRoute] Guid sportId, CreateTournamentInputModel model)
+        public async Task<IActionResult> Create([FromRoute] Guid sportId, [FromBody] CreateTournamentInputModel model)
         {
             model.SportId = sportId;
 

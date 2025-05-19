@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { AuthService } from "./authService";
 
 @Injectable({ providedIn: 'root' })
-export class SportsServce {
+export class SportsService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     getSports(): Observable<Sport[]> {

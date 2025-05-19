@@ -46,7 +46,8 @@ builder.Services
            .AddTransient<IMetricsRepository, MetricsRepository>()
            .AddTransient<ITournamentsRepository, TournamentsRepository>()
            .AddTransient<ISportSettingsRepository, SportSettingsRepository>()
-           .AddTransient<IUserRepository, UserRepository>();
+           .AddTransient<IUserRepository, UserRepository>()
+           .AddTransient<IMatchRepository, MatchRepository>();
 
 var app = builder.Build();
 

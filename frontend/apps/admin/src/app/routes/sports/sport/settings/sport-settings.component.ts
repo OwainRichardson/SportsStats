@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { SportsServce } from '../../../../shared/services/sportsService'; 
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Sport } from '../../../../shared/types/sports/sport';
 import { SportSetting } from '../../../../shared/types/sports/sport-setting';
 import { SportsSettingsService } from '../../../../shared/services/sportsSettingsService';
 import { MetricsService } from '../../../../shared/services/metricsService';
 import { SportMetric } from '../../../../shared/types/sports/sport-metric';
+import { SportsService } from '../../../../shared/services/sportsService';
 
 @Component({
   selector: 'app-sport-settings',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './sport-settings.component.html',
 })
 export class SportSettingsComponent implements OnInit {
@@ -19,7 +19,7 @@ export class SportSettingsComponent implements OnInit {
   metrics!: SportMetric[];
 
   constructor (private route: ActivatedRoute, 
-                private sportsService: SportsServce, 
+                private sportsService: SportsService, 
                 private sportsSettingService: SportsSettingsService,
                 private metricService: MetricsService) {}
 

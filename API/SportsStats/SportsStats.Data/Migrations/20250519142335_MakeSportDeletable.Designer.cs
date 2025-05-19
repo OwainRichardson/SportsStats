@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsStats.Data.Contexts;
 
@@ -11,9 +12,11 @@ using SportsStats.Data.Contexts;
 namespace SportsStats.Data.Migrations
 {
     [DbContext(typeof(SportsStatsContext))]
-    partial class SportsStatsContextModelSnapshot : ModelSnapshot
+    [Migration("20250519142335_MakeSportDeletable")]
+    partial class MakeSportDeletable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,34 +24,6 @@ namespace SportsStats.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("SportsStats.Data.Entities.Match", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AwayTeamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("HomeTeamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TournamentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AwayTeamId")
-                        .IsUnique();
-
-                    b.HasIndex("HomeTeamId")
-                        .IsUnique();
-
-                    b.HasIndex("TournamentId");
-
-                    b.ToTable("Matches");
-                });
 
             modelBuilder.Entity("SportsStats.Data.Entities.Metric", b =>
                 {
@@ -157,20 +132,6 @@ namespace SportsStats.Data.Migrations
                     b.ToTable("SportSettings");
                 });
 
-            modelBuilder.Entity("SportsStats.Data.Entities.Team", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Teams");
-                });
-
             modelBuilder.Entity("SportsStats.Data.Entities.Tournament", b =>
                 {
                     b.Property<Guid>("Id")
@@ -233,33 +194,6 @@ namespace SportsStats.Data.Migrations
                     b.HasAlternateKey("Email");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SportsStats.Data.Entities.Match", b =>
-                {
-                    b.HasOne("SportsStats.Data.Entities.Team", "AwayTeam")
-                        .WithOne()
-                        .HasForeignKey("SportsStats.Data.Entities.Match", "AwayTeamId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("SportsStats.Data.Entities.Team", "HomeTeam")
-                        .WithOne()
-                        .HasForeignKey("SportsStats.Data.Entities.Match", "HomeTeamId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("SportsStats.Data.Entities.Tournament", "Tournament")
-                        .WithMany()
-                        .HasForeignKey("TournamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AwayTeam");
-
-                    b.Navigation("HomeTeam");
-
-                    b.Navigation("Tournament");
                 });
 
             modelBuilder.Entity("SportsStats.Data.Entities.Metric", b =>

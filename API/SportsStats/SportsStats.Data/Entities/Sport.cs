@@ -12,5 +12,6 @@ namespace SportsStats.Data.Entities
         public DateTime? UpdatedDate { get; set; }
         public Guid? UpdatedBy { get; set; }
         public string Icon { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

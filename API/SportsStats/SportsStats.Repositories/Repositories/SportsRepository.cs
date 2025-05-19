@@ -4,6 +4,7 @@ using SportsStats.Data.Entities;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Sports;
 using SportsStats.Repositories.Interfaces;
+using System.Net;
 
 namespace SportsStats.Repositories.Repositories
 {
@@ -48,11 +49,12 @@ namespace SportsStats.Repositories.Repositories
         {
             return await _sportsStatsContext.Sports
                                 .AsNoTracking()
+                                .Where(sport => sport.IsActive)
                                 .Select(sport => new SportDetails
                                 {
                                     Id = sport.Id,
                                     Name = sport.Name,
-                                    Icon = sport.Icon
+                                    Icon = sport.Icon,
                                 })
                                 .OrderBy(sport => sport.Name)
                                 .ToListAsync();

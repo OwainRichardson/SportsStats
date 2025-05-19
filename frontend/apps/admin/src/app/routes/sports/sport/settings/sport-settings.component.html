@@ -1,4 +1,11 @@
-<h1 class="text-4xl mb-12">{{sport.name}} settings</h1>
+<div class="text-xl cursor-pointer mb-4">
+    <div routerLink="/sports/{{sport.id}}" class="flex flex-row items-center">
+        <span class="font-material-icons mr-2">arrow_back</span>
+        back
+    </div>
+</div>
+
+<h1 class="text-4xl mb-12">{{sport.name}} Settings</h1>
 
 <div class="flex flex-row">
     <div *ngFor="let setting of settings" class="flex flex-row items-center space-between w-1/3">
@@ -15,7 +22,7 @@
 <div class="border-b-2 border-green-600 w-full mt-8 mb-8"></div>
 
 <div class="flex flex-row items-center mb-6 h-16">
-    <h2 class="text-4xl">{{sport.name}} metrics</h2>
+    <h2 class="text-4xl">Metrics</h2>
     <div 
         class="border border-green-600 rounded-xl px-12 h-3/4 ml-12 font-material-icons text-black flex items-center cursor-pointer hover:bg-green-600 hover:text-white"
         (click)="showNewMetric()"
@@ -80,13 +87,13 @@
                 <div *ngIf="metric.isScoreModifier" class="mr-2 bg-red-400 h-10 w-10 rounded-full items-center justify-center flex">SM</div>
                 <div *ngIf="metric.isTurnover" class="mr-2 bg-yellow-400 h-10 w-10 rounded-full items-center justify-center flex">T</div>
             </div>
-            <div class="font-material-icons text-2xl absolute right-8 cursor-pointer"
+            <div class="font-material-icons text-2xl absolute right-10 cursor-pointer"
                 tabindex="0"
                 (click)="deleteMetric(metric.id)"
                 (keydown)="deleteMetric(metric.id)">
                 delete
             </div>
-            <div class="font-material-icons text-2xl absolute right-16 cursor-pointer"
+            <div class="font-material-icons text-2xl absolute right-20 cursor-pointer"
                 tabindex="0"
                 (click)="toggleMetricEdit(metric.id)"
                 (keydown)="toggleMetricEdit(metric.id)">
