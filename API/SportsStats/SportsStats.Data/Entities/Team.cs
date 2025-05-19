@@ -7,5 +7,7 @@ namespace SportsStats.Data.Entities
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string LogoUrl { get; set; }
+        public Guid SportId { get; set; }
     }
 }

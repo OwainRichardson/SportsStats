@@ -1,0 +1,29 @@
+<div class="text-xl cursor-pointer mb-4">
+    <div routerLink="/sports/{{sportId}}" class="flex flex-row items-center">
+        <span class="font-material-icons mr-2">arrow_back</span>
+        back
+    </div>
+</div>
+
+<h1 class="text-4xl mb-12">{{sport.name}} Teams</h1>
+
+<div class="flex flex-row flex-wrap">
+    <div *ngFor="let team of teams" class="px-8 w-1/4 mb-8 h-64">
+        <div routerLink="/sports/{{sport.id}}/teams/{{team.id}}"
+            class="h-64 border border-green-600 rounded-xl hover:bg-green-600 hover:text-white cursor-pointer">
+            <div class="w-full mb-4 truncate h-48 rounded-xl">
+                <img src="{{team.logoUrl}}" alt="team-logo" class="w-full h-full object-fit" />
+            </div>
+            <div class="w-full text-center text-xl h-16 px-auto py-1">
+                {{team.name}}
+            </div>
+        </div>
+    </div>
+
+    <div class="px-8 w-1/4 mb-8 h-64">
+        <div routerLink="/sports/{{sportId}}/teams/create"
+            class="h-64 flex items-center justify-center border border-green-600 rounded-xl hover:bg-green-600 hover:text-white cursor-pointer">
+            <div class="font-material-icons w-full text-center text-4xl mb-4">add</div>
+        </div>
+    </div>
+</div>

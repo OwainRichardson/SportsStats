@@ -1,0 +1,23 @@
+<h1 class="text-4xl font-bold mb-12">Create New {{sport.name}} Team</h1>
+
+<div class="w-1/2">
+    <div class="mb-4">
+        <label for="team-name" class="block mb-2">Team name</label>
+        <input type="text" 
+                id="team-name" 
+                placeholder="Team name" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+    <div class="mb-4">
+        <label for="team-logo" class="block mb-2">Team logo url</label>
+        <input type="text" 
+                id="team-logo" 
+                placeholder="Team logo url" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+
+    <div class="mb-4">
+        <button class="w-full bg-green-600 text-white rounded-xl py-4 hover:font-bold hover:shadow-md"
+                (click)="createTeam()">Create Team</button>
+    </div>
+</div>
