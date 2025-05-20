@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SportsService } from '@shared/services/sportsService';
-import { Sport } from '@shared/types/sports/sport';
+import { SportsService } from '@common/services/sportsService';
+import { Sport } from '@common/types/sports/sport';
 import { RouterLink } from '@angular/router';
 
 @Component({

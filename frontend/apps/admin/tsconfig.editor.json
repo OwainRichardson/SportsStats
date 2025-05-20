@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../common/services/authService.ts", "../common/services/userService.ts", "../common/types/users/userDetails.ts", "../common/services/authGuard.ts", "../common/types/sports/sport.ts", "../common/services/sportsService.ts"],
   "compilerOptions": {},
   "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

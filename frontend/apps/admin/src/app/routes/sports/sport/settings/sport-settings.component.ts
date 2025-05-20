@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Sport } from '@shared/types/sports/sport';
+import { Sport } from '@common/types/sports/sport';
 import { SportSetting } from '@shared/types/sports/sport-setting';
 import { SportsSettingsService } from '@shared/services/sportsSettingsService';
 import { MetricsService } from '@shared/services/metricsService';

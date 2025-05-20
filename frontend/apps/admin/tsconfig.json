@@ -9,7 +9,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@shared/*": ["apps/admin/src/app/shared/*"]
+      "@shared/*": ["apps/admin/src/app/shared/*"],
+      "@common/*": ["apps/common/*"]
     }
   },
   "files": [],

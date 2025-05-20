@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { AuthService } from '@common/services/authService';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, RouterLink],
-  templateUrl: './login.component.html',
-  providers: [AuthService],
+  imports: [CommonModule],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   constructor(private authService: AuthService) {}

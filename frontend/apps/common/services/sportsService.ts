@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Sport } from "../../shared/types/sports/sport";
+import { Sport } from "../types/sports/sport";
 import { Observable } from "rxjs";
 import { AuthService } from "./authService";
-import { baseUrl } from "./serviceConstants";
+import { baseUrl } from "../../admin/src/app/shared/services/serviceConstants";
 
 @Injectable({ providedIn: 'root' })
 export class SportsService {

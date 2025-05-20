@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { UserLoginResponse } from "../types/users/userLoginResponse";
+import { UserLoginResponse } from "../../admin/src/app/shared/types/users/userLoginResponse";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from "@angular/router";
-import { baseUrl } from "./serviceConstants";
+import { baseUrl } from "../../admin/src/app/shared/services/serviceConstants";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

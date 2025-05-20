@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { AuthService } from "./authService";
+import { AuthService } from "../../../../../common/services/authService";
 import { SportMetric } from "../../shared/types/sports/sport-metric";
 import { baseUrl } from "./serviceConstants";
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Sport } from '@shared/types/sports/sport';
+import { Sport } from '@common/types/sports/sport';
 import { SportsService } from '@shared/services/sportsService';
 
 @Component({

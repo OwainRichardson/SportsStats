@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SportsService } from '@shared/services/sportsService';
 import { TournamentService } from '@shared/services/tournamentService';
-import { Sport } from '@shared/types/sports/sport';
+import { Sport } from '@common/types/sports/sport';
 import { Tournament } from '@shared/types/tournaments/tournament';
 import { Match } from '@shared/types/tournaments/match';
 import { MatchService } from '@shared/services/matchService';

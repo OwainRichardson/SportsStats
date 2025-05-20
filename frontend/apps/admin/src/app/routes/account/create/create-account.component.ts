@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../shared/services/authService';
+import { AuthService } from '../../../../../../common/services/authService';
 
 @Component({
   selector: 'app-create-account',
