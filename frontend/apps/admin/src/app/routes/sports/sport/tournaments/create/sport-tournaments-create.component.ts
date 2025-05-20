@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SportsService } from '../../../../../shared/services/sportsService';
-import { Sport } from '../../../../../shared/types/sports/sport';
-import { Tournament } from '../../../../../shared/types/tournaments/tournament';
-import { TournamentService } from '../../../../../shared/services/tournamentService';
+import { SportsService } from '@shared/services/sportsService';
+import { Sport } from '@shared/types/sports/sport';
+import { Tournament } from '@shared/types/tournaments/tournament';
+import { TournamentService } from '@shared/services/tournamentService';
 
 @Component({
   selector: 'app-sport-tournaments-create',

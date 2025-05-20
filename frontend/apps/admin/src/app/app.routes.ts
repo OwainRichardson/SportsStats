@@ -4,7 +4,6 @@ import { SportsComponent } from './routes/sports/sports.component';
 import { SportComponent } from './routes/sports/sport/sport.component';
 import { LoginComponent } from './routes/account/login/login.component';
 import { CreateAccountComponent } from './routes/account/create/create-account.component';
-import { AuthGuard } from './shared/services/authGuard';
 import { SportSettingsComponent } from './routes/sports/sport/settings/sport-settings.component';
 import { SportTournamentsComponent } from './routes/sports/sport/tournaments/sport-tournaments.component';
 import { SportsCreateComponent } from './routes/sports/create/sports-create.component';
@@ -14,6 +13,7 @@ import { SportTeamsComponent } from './routes/sports/sport/teams/sport-teams.com
 import { SportTeamsCreateComponent } from './routes/sports/sport/teams/create/sport-teams-create.component';
 import { SportTeamComponent } from './routes/sports/sport/teams/team/sport-team.component';
 import { SportTournamentMatchesCreateComponent } from './routes/sports/sport/tournaments/tournament/matches/create/sport-tournament-matches-create.component';
+import { AuthGuard } from './shared/services/authGuard';
 
 export const appRoutes: Route[] = [
     { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },

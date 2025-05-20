@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Sport } from '../../../../../../../shared/types/sports/sport';
-import { Tournament } from '../../../../../../../shared/types/tournaments/tournament';
-import { SportsService } from '../../../../../../../shared/services/sportsService';
-import { TournamentService } from '../../../../../../../shared/services/tournamentService';
-import { Team } from '../../../../../../../shared/types/teams/team';
-import { TeamsService } from '../../../../../../../shared/services/teamsService';
-import { MatchService } from '../../../../../../../shared/services/matchService';
+import { Sport } from '@shared/types/sports/sport';
+import { Tournament } from '@shared/types/tournaments/tournament';
+import { SportsService } from '@shared/services/sportsService';
+import { TournamentService } from '@shared/services/tournamentService';
+import { Team } from '@shared/types/teams/team';
+import { TeamsService } from '@shared/services/teamsService';
+import { MatchService } from '@shared/services/matchService';
 
 @Component({
   selector: 'app-sport-tournament-matches-create',

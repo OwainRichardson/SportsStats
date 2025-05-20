@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../shared/services/authService';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../shared/services/authService';
 
 @Component({
   selector: 'app-login',

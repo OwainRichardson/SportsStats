@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { UserDetails } from "../types/users/userDetails";
+import { UserDetails } from "../../shared/types/users/userDetails";
 import { AuthService } from "./authService";
 import { Observable } from "rxjs";
 import { baseUrl } from "./serviceConstants";

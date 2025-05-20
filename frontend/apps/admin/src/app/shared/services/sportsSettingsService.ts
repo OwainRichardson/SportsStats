@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { SportSetting } from "../types/sports/sport-setting";
+import { SportSetting } from "../../shared/types/sports/sport-setting";
 import { Observable } from "rxjs";
 import { AuthService } from "./authService";
 import { baseUrl } from "./serviceConstants";

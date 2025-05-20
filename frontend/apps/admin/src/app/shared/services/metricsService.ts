@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "./authService";
-import { SportMetric } from "../types/sports/sport-metric";
+import { SportMetric } from "../../shared/types/sports/sport-metric";
 import { baseUrl } from "./serviceConstants";
 
 @Injectable({ providedIn: 'root' })
