@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UserLoginResponse } from "../types/users/userLoginResponse";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from "@angular/router";
+import { baseUrl } from "./serviceConstants";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
             })
           };
 
-        this.http.post<UserLoginResponse>('http://localhost:5253/account/login', {email, passwordHash}, httpOptions).subscribe(response => {
+        this.http.post<UserLoginResponse>(`${baseUrl}/account/login`, {email, passwordHash}, httpOptions).subscribe(response => {
             this.setSession(response.accessToken);
             this.router.navigate(['/']);
         });
@@ -32,7 +33,7 @@ export class AuthService {
             })
           };
 
-        this.http.post<UserLoginResponse>('http://localhost:5253/account/createaccount', {email, passwordHash, firstName, lastName}, httpOptions).subscribe(response => {
+        this.http.post<UserLoginResponse>(`${baseUrl}/account/createaccount`, {email, passwordHash, firstName, lastName}, httpOptions).subscribe(response => {
             this.setSession(response.accessToken);
             this.router.navigate(['/']);
         });

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportsStats.Data.Entities;
 using SportsStats.Models.Extensions;
 using SportsStats.Models.InputModels;
 using SportsStats.Models.Sports;
@@ -35,6 +36,27 @@ namespace SportsStats.Controllers
             await _teamRepository.CreateTeam(model, User.UserId());
 
             return NoContent();
+        }
+
+        [HttpPut]
+        [Route("sports/{sportId}/teams/{teamId}")]
+        public async Task<IActionResult> Update([FromRoute] Guid sportId, [FromRoute] Guid teamId, [FromBody] CreateTeamInputModel model)
+        {
+            model.SportId = sportId;
+            model.TeamId = teamId;
+
+            await _teamRepository.UpdateTeam(model, User.UserId());
+
+            return NoContent();
+        }
+
+
+
+        [HttpGet]
+        [Route("sports/{sportId}/teams/{teamId}")]
+        public async Task<IActionResult> Update([FromRoute] Guid sportId, [FromRoute] Guid teamId)
+        {
+            return Ok(await _teamRepository.GetTeam(sportId, teamId));
         }
     }
 }

@@ -1,40 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Sport } from '../../../../../shared/types/sports/sport';
 import { SportsService } from '../../../../../shared/services/sportsService';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TeamsService } from '../../../../../shared/services/teamsService';
+import { Team } from '../../../../../shared/types/teams/team';
 
 @Component({
-  selector: 'app-sport-teams-create',
-  imports: [CommonModule],
-  templateUrl: './sport-teams-create.component.html'
+  selector: 'app-sport-team',
+  imports: [CommonModule, RouterLink],
+  templateUrl: './sport-team.component.html'
 })
-export class SportTeamsCreateComponent implements OnInit {
+export class SportTeamComponent implements OnInit {
   sport!: Sport;
+  team!: Team;
 
-  constructor(private route: ActivatedRoute, 
-              private sportsService: SportsService, 
-              private router: Router,
-              private teamService: TeamsService) {}
+  constructor(private sportsService: SportsService, 
+              private route: ActivatedRoute,
+              private teamService: TeamsService,
+              private router: Router)
+  {
+
+  }
 
   ngOnInit(): void {
-    const sportId = this.route.snapshot.paramMap.get('sportId');
-    if (sportId) {
-      this.sportsService.getSport(sportId).subscribe(sport => {
-        this.sport = sport;
-      });
+      const sportId = this.route.snapshot.paramMap.get('sportId');
+      const teamId = this.route.snapshot.paramMap.get('teamId');
+      if (sportId && teamId) {
+        this.sportsService.getSport(sportId).subscribe(sport => {
+          this.sport = sport;
+        });
+
+        this.teamService.getTeam(sportId, teamId).subscribe(team => {
+          this.team = team;
+        });
     }
   }
 
-  createTeam() {
+  updateTeam() {
     const teamNameInput = document.getElementById('team-name') as HTMLInputElement;
     const teamLogoInput = document.getElementById('team-logo') as HTMLInputElement;
     const primaryColourInput = document.getElementById('team-primary-colour') as HTMLInputElement;
     const secondaryColourInput = document.getElementById('team-secondary-colour') as HTMLInputElement;
 
-    this.teamService.createTeam(this.sport.id, {
-      id: 'new',
+    this.teamService.updateTeam(this.sport.id, {
+      id: this.team.id,
       name: teamNameInput.value,
       logoUrl: teamLogoInput.value,
       primaryColour: primaryColourInput.value,

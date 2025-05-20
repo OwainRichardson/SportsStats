@@ -12,5 +12,7 @@ namespace SportsStats.Data.Entities
         public Team HomeTeam { get; set; }
         public Guid AwayTeamId { get; set; }
         public Team AwayTeam { get; set; }
+        public DateTime Time { get; set; }
+        public string Pitch { get; set; }
     }
 }

@@ -21,8 +21,8 @@ namespace SportsStats.Data.Contexts
             modelBuilder.Entity<User>().HasAlternateKey(user => user.Email);
             modelBuilder.Entity<Match>().HasKey(match => match.Id);
             modelBuilder.Entity<Team>().HasKey(team => team.Id);
-            modelBuilder.Entity<Match>().HasOne(match => match.HomeTeam).WithOne().OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Match>().HasOne(match => match.AwayTeam).WithOne().OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Match>().HasOne(match => match.HomeTeam).WithMany().OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Match>().HasOne(match => match.AwayTeam).WithMany().OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Sport> Sports { get; set; }

@@ -1,0 +1,48 @@
+<div class="text-xl cursor-pointer mb-4">
+    <div routerLink="/sports/{{sportId}}/tournaments/{{tournament.id}}" class="flex flex-row items-center">
+        <span class="font-material-icons mr-2">arrow_back</span>
+        back
+    </div>
+</div>
+
+<h1 class="text-4xl mb-12">{{tournament.name}} - add match</h1>
+
+<div class="w-1/2">
+    <div class="mb-4">
+        <label for="home-team" class="block mb-2">Home team</label>
+        <select 
+            class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md"
+            id="home-team">
+            <option value=""> - Please select a team - </option>
+            <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label for="away-team" class="block mb-2">Away team</label>
+        <select 
+            class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md"
+            id="away-team">
+            <option value=""> - Please select a team - </option>
+            <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label for="pitch" class="block mb-2">Pitch</label>
+        <input type="text" 
+                id="pitch" 
+                placeholder="Pitch" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+    <div class="mb-4">
+        <label for="time" class="block mb-2">Time</label>
+        <input type="text" 
+                id="time" 
+                placeholder="Time" 
+                class="w-full p-4 border-2 border-green-600 rounded-xl focus:border-green-800 focus:outline-none focus:shadow-md">
+    </div>
+
+    <div class="mb-4">
+        <button class="w-full bg-green-600 text-white rounded-xl py-4 hover:font-bold hover:shadow-md"
+                (click)="createMatch()">Create Match</button>
+    </div>
+</div>

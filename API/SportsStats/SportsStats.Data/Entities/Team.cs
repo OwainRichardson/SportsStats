@@ -9,5 +9,7 @@ namespace SportsStats.Data.Entities
         public string Name { get; set; }
         public string LogoUrl { get; set; }
         public Guid SportId { get; set; }
+        public string PrimaryColour { get; set; }
+        public string SecondaryColour { get; set; }
     }
 }

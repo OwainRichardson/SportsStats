@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsStats.Data.Contexts;
 
@@ -11,9 +12,11 @@ using SportsStats.Data.Contexts;
 namespace SportsStats.Data.Migrations
 {
     [DbContext(typeof(SportsStatsContext))]
-    partial class SportsStatsContextModelSnapshot : ModelSnapshot
+    [Migration("20250520123357_AddTimeAndPitchToMatch")]
+    partial class AddTimeAndPitchToMatch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,9 +48,11 @@ namespace SportsStats.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AwayTeamId");
+                    b.HasIndex("AwayTeamId")
+                        .IsUnique();
 
-                    b.HasIndex("HomeTeamId");
+                    b.HasIndex("HomeTeamId")
+                        .IsUnique();
 
                     b.HasIndex("TournamentId");
 
@@ -254,14 +259,14 @@ namespace SportsStats.Data.Migrations
             modelBuilder.Entity("SportsStats.Data.Entities.Match", b =>
                 {
                     b.HasOne("SportsStats.Data.Entities.Team", "AwayTeam")
-                        .WithMany()
-                        .HasForeignKey("AwayTeamId")
+                        .WithOne()
+                        .HasForeignKey("SportsStats.Data.Entities.Match", "AwayTeamId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SportsStats.Data.Entities.Team", "HomeTeam")
-                        .WithMany()
-                        .HasForeignKey("HomeTeamId")
+                        .WithOne()
+                        .HasForeignKey("SportsStats.Data.Entities.Match", "HomeTeamId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
