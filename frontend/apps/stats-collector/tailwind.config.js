@@ -8,7 +8,12 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'material-icons': 'Material Icons',
+        'michroma': '"Michroma", sans-serif'
+      }
+    },
   },
   plugins: [],
 };

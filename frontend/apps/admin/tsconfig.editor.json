@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts", "../common/services/authService.ts", "../common/services/userService.ts", "../common/types/users/userDetails.ts", "../common/services/authGuard.ts", "../common/types/sports/sport.ts", "../common/services/sportsService.ts"],
+  "include": ["src/**/*.ts", "../common/services/authService.ts", "../common/services/userService.ts", "../common/types/users/userDetails.ts", "../common/services/authGuard.ts", "../common/types/sports/sport.ts", "../common/services/sportsService.ts", "../common/services/matchService.ts", "../common/services/metricsService.ts", "../common/services/serviceConstants.ts", "../common/services/sportsSettingsService.ts", "../common/services/teamsService.ts", "../common/services/tournamentService.ts", "../common/types/sports/sport-metric.ts", "../common/types/sports/sport-setting.ts", "../common/types/users/userLoginDetails.ts", "../common/types/users/userLoginResponse.ts"],
   "compilerOptions": {},
   "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

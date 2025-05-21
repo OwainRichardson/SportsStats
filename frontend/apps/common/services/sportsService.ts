@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Sport } from "../types/sports/sport";
 import { Observable } from "rxjs";
 import { AuthService } from "./authService";
-import { baseUrl } from "../../admin/src/app/shared/services/serviceConstants";
+import { baseUrl } from "./serviceConstants";
 
 @Injectable({ providedIn: 'root' })
 export class SportsService {

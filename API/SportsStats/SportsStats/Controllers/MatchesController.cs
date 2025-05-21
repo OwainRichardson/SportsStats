@@ -23,6 +23,16 @@ namespace SportsStats.Controllers
             return Ok(await _matchRepository.GetTournamentMatches(tournamentId));
         }
 
+
+
+        [HttpGet]
+        [Route("sports/{sportId}/tournaments/{tournamentId}/matches/{matchId}")]
+        [ProducesResponseType(typeof(TournamentViewModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetMatch([FromRoute] Guid matchId)
+        {
+            return Ok(await _matchRepository.GetMatch(matchId));
+        }
+
         [HttpPost]
         [Route("sports/{sportId}/tournaments/{tournamentId}/matches")]
         [ProducesResponseType(typeof(TournamentViewModel), StatusCodes.Status200OK)]

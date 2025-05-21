@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sport } from '@common/types/sports/sport';
-import { SportsService } from '@shared/services/sportsService';
-import { TeamsService } from '@shared/services/teamsService';
+import { SportsService } from '@common/services/sportsService';
+import { TeamsService } from '@common/services/teamsService';
 
 @Component({
   selector: 'app-sport-teams-create',

@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { UserDetails } from "../types/users/userDetails";
 import { AuthService } from "./authService";
 import { Observable } from "rxjs";
-import { baseUrl } from "../../admin/src/app/shared/services/serviceConstants";
+import { baseUrl } from "./serviceConstants";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

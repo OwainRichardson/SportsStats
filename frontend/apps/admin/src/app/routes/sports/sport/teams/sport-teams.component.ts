@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Sport } from '@common/types/sports/sport';
-import { Team } from '@shared/types/teams/team';
-import { SportsService } from '@shared/services/sportsService';
-import { TeamsService } from '@shared/services/teamsService';
+import { Team } from '@common/types/teams/team';
+import { SportsService } from '@common/services/sportsService';
+import { TeamsService } from '@common/services/teamsService';
 
 @Component({
   selector: 'app-sport-teams',

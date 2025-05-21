@@ -1,2 +1,19 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="w-screen flex flex-col">
+    <div id="nav" class="w-full bg-green-600 flex flex-row items-center justify-center">
+        <div class="w-1/2 flex flex-row items-center">
+            <div class="logo ml-10 w-24 h-24 bg-contain bg-no-repeat cursor-pointer" routerLink="/"></div>
+            <div class="text-4xl text-white w-64">Sports Stats</div>
+        </div>
+        <div class="w-1/3 flex items-center justify-center">
+            <a *ngIf="isAuthenticated" class="text-2xl text-white hover:undrline inline-block mr-8 cursor-pointer">Hello,{{userDetails?.firstName}}</a>
+        </div>
+
+        <div class="w-1/2 text-2xl text-right pr-20 flex flex-row items-center justify-end">
+            <a *ngIf="!isAuthenticated" class="text-white hover:underline inline-block cursor-pointer" routerLink="/account/login" routerLinkActive="active">Login</a>
+            <a *ngIf="isAuthenticated" class="text-white hover:underline inline-block cursor-pointer" tabindex="0" (keydown)="logout()" (click)="logout()">Logout</a>
+        </div>
+    </div>
+    <div id="content" class="w-full py-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

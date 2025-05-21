@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Sport } from '@common/types/sports/sport';
-import { SportSetting } from '@shared/types/sports/sport-setting';
-import { SportsSettingsService } from '@shared/services/sportsSettingsService';
-import { MetricsService } from '@shared/services/metricsService';
-import { SportMetric } from '@shared/types/sports/sport-metric';
-import { SportsService } from '@shared/services/sportsService';
+import { SportSetting } from '@common/types/sports/sport-setting';
+import { SportsSettingsService } from '@common/services/sportsSettingsService';
+import { MetricsService } from '@common/services/metricsService';
+import { SportMetric } from '@common/types/sports/sport-metric';
+import { SportsService } from '@common/services/sportsService';
 
 @Component({
   selector: 'app-sport-settings',

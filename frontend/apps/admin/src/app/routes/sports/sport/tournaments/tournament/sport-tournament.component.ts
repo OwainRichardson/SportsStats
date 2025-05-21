@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SportsService } from '@shared/services/sportsService';
-import { TournamentService } from '@shared/services/tournamentService';
+import { SportsService } from '@common/services/sportsService';
+import { TournamentService } from '@common/services/tournamentService';
 import { Sport } from '@common/types/sports/sport';
-import { Tournament } from '@shared/types/tournaments/tournament';
-import { Match } from '@shared/types/tournaments/match';
-import { MatchService } from '@shared/services/matchService';
+import { Tournament } from '@common/types/tournaments/tournament';
+import { Match } from '@common/types/tournaments/match';
+import { MatchService } from '@common/services/matchService';
 
 @Component({
   selector: 'app-sport-tournament',

@@ -31,6 +31,15 @@ namespace SportsStats.Repositories.Repositories
             await _sportsStatsContext.SaveChangesAsync();
         }
 
+        public async Task<Match> GetMatch(Guid matchId)
+        {
+            return await _sportsStatsContext.Matches
+                                .Include(match => match.HomeTeam)
+                                .Include(match => match.AwayTeam)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync(match => match.Id == matchId);
+        }
+
         public async Task<List<Match>> GetTournamentMatches(Guid tournamentId)
         {
             return await _sportsStatsContext.Matches
