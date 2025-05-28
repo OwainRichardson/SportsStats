@@ -1,9 +1,0 @@
-{
-  "name": "stats-displayer-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/stats-displayer-e2e/src",
-  "implicitDependencies": ["stats-displayer"],
-  "// targets": "to see all targets run: nx show project stats-displayer-e2e --web",
-  "targets": {}
-}
