@@ -36,9 +36,9 @@
             </span>
         </div>
         <div class="w-1/5 py-4 bg-black text-white font-michroma text-4xl">
-            <span id="minutes">{{pad(minutes)}}</span>
+            <span id="minutes">{{minutes | padNumber }}</span>
             <span>:</span>
-            <span id="seconds">{{pad(seconds)}}</span>
+            <span id="seconds">{{seconds | padNumber }}</span>
         </div>
     </div>
 

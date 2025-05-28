@@ -11,10 +11,11 @@ import { SportsSettingsService } from '@common/services/sportsSettingsService';
 import { OrdinalNumberPipe } from '@common/pipes/ordinal-number-pipe';
 import { Sport } from '@common/types/sports/sport';
 import { SportsService } from '@common/services/sportsService';
+import { PadNumberPipe } from '@common/pipes/pad-number-pipe';
 
 @Component({
   selector: 'app-match',
-  imports: [CommonModule, OrdinalNumberPipe],
+  imports: [CommonModule, OrdinalNumberPipe, PadNumberPipe],
   templateUrl: './match.component.html',
 })
 export class MatchComponent implements OnInit {
@@ -99,14 +100,6 @@ export class MatchComponent implements OnInit {
 
       this.iterateTimer();
     }, 1000);
-  }
-
-  pad(value: number) {
-    if (value < 10) {
-      return '0' + value;
-    }
-
-    return value;
   }
 
   processMetric(metric: SportMetric) {
