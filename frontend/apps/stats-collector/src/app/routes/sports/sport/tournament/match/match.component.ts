@@ -36,6 +36,7 @@ export class MatchComponent implements OnInit {
   showEndMatchButton = false;
   periodNumber = 1;
   isBetweenPeriods = true;
+  matchFinished = false;
   
   constructor(private route: ActivatedRoute,
               private tournamentService: TournamentService,
@@ -132,7 +133,11 @@ export class MatchComponent implements OnInit {
   }
 
   endMatch() {
-    this.isBetweenPeriods = true;
-    console.log('end-match');
+    this.matchActive = false;
+    this.minutes = this.periodLength ? this.periodLength * this.periodNumber : 0;
+    this.seconds = 0;
+    this.showEndMatchButton = false;
+    this.showEndPeriodButton = false;
+    this.matchFinished = true;
   }
 }

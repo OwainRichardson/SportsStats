@@ -4,7 +4,7 @@
     
     <div class="flex flex-row w-full items-center justify-center">
         <div 
-            *ngIf="!matchActive || isBetweenPeriods" 
+            *ngIf="(!matchActive || isBetweenPeriods) && !matchFinished" 
             class="flex flex-row w-1/5 bg-green-600 py-6 items-center justify-center text-white cursor-pointer"
             (click)="startPeriod()"
             (keydown)="startPeriod()"
@@ -27,7 +27,14 @@
             tabindex="0">
             End Match
         </div>
-        <div class="w-1/5">{{periodNumber | ordinalNumber}} {{this.periodName}}</div>
+        <div class="w-1/5">
+            <span *ngIf="!matchFinished">
+                {{periodNumber | ordinalNumber}} {{this.periodName}}
+            </span>
+            <span *ngIf="matchFinished">
+                Match finished
+            </span>
+        </div>
         <div class="w-1/5 py-4 bg-black text-white font-michroma text-4xl">
             <span id="minutes">{{pad(minutes)}}</span>
             <span>:</span>
