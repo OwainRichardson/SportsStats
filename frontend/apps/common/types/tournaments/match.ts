@@ -10,4 +10,5 @@ export interface Match {
     awayTeamScore?: number,
     pitch: string,
     time: string
+    isComplete: boolean;
 }

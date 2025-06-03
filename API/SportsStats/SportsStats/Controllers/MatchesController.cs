@@ -42,5 +42,15 @@ namespace SportsStats.Controllers
 
             return NoContent();
         }
+
+        [HttpPut]
+        [Route("sports/{sportId}/tournaments/{tournamentId}/matches/{matchId}/complete")]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> CompleteMatch([FromRoute] Guid matchId)
+        {
+            await _matchRepository.CompleteMatch(matchId);
+
+            return NoContent();
+        }
     }
 }

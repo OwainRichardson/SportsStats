@@ -99,7 +99,7 @@ export class MatchComponent implements OnInit {
       }
 
       this.iterateTimer();
-    }, 1000);
+    }, 100);
   }
 
   processMetric(metric: SportMetric) {
@@ -132,5 +132,7 @@ export class MatchComponent implements OnInit {
     this.showEndMatchButton = false;
     this.showEndPeriodButton = false;
     this.matchFinished = true;
+
+    this.matchesService.completeMatch(this.sport.id, this.tournament.id, this.match.id).subscribe();
   }
 }

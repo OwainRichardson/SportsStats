@@ -14,5 +14,8 @@ namespace SportsStats.Data.Entities
         public Team AwayTeam { get; set; }
         public DateTime Time { get; set; }
         public string Pitch { get; set; }
+        public bool IsComplete { get; set; }
+        public int HomeTeamScore { get; set; }
+        public int AwayTeamScore { get; set; }
     }
 }

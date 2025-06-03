@@ -15,6 +15,19 @@ namespace SportsStats.Repositories.Repositories
             _sportsStatsContext = sportsStatsContext;
         }
 
+        public async Task CompleteMatch(Guid matchId)
+        {
+            Match match = await _sportsStatsContext.Matches.FirstOrDefaultAsync(match => match.Id == matchId);
+
+            if (match == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            match.IsComplete = true;
+            await _sportsStatsContext.SaveChangesAsync();
+        }
+
         public async Task CreateMatch(Guid tournamentId, CreateMatchInputModel model)
         {
             Match match = new()
