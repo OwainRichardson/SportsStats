@@ -32,5 +32,6 @@ namespace SportsStats.Data.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<MatchEvent> MatchEvents { get; set; }
     }
 }

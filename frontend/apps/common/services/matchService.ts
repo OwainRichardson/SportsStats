@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "./authService";
-import { Match } from "@common/types/tournaments/match";
-import { baseUrl } from "@common/services/serviceConstants";
+import { Match } from "../types/tournaments/match";
+import { baseUrl } from "../services/serviceConstants";
+import { MatchEvent } from "../types/tournaments/matchEvent";
 
 @Injectable({ providedIn: 'root' })
 export class MatchService {
@@ -23,5 +24,10 @@ export class MatchService {
 
     completeMatch(sportId: string, tournamentId: string, matchId: string): Observable<Match> {
         return this.http.put<Match>(`${baseUrl}/sports/${sportId}/tournaments/${tournamentId}/matches/${matchId}/complete`, this.authService.getRequestHeaders());
+    }
+
+    addMatchEvent(sportId: string, tournamentId: string, matchId: string, matchEvent: MatchEvent): Observable<Match> {
+        const payload = JSON.stringify(matchEvent);
+        return this.http.post<Match>(`${baseUrl}/sports/${sportId}/tournaments/${tournamentId}/matches/${matchId}/events`, payload, this.authService.getRequestHeaders());
     }
 }
