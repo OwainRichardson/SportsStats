@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsStats.Data.Contexts;
 
@@ -11,9 +12,11 @@ using SportsStats.Data.Contexts;
 namespace SportsStats.Data.Migrations
 {
     [DbContext(typeof(SportsStatsContext))]
-    partial class SportsStatsContextModelSnapshot : ModelSnapshot
+    [Migration("20250603151613_AddMatchEvents")]
+    partial class AddMatchEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

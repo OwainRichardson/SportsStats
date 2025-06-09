@@ -99,11 +99,24 @@ export class MatchComponent implements OnInit {
       }
 
       this.iterateTimer();
-    }, 100);
+    }, 1000);
   }
 
   processMetric(metric: SportMetric) {
-    if (metric.isScoreModifier) {
+    if (!this.match.homeTeam || !this.match.awayTeam) {
+      return;
+    }
+
+    this.matchesService.addMatchEvent(this.sport.id,
+                                        this.tournament.id,
+                                        this.match.id,
+                                        {
+                                          metricId: metric.id,
+                                          teamId: this.posession === 'home' ? this.match.homeTeam.id : this.match.awayTeam.id,
+                                          timestamp: this.calculateTimestamp()
+                                        }).subscribe();
+
+                                        if (metric.isScoreModifier) {
       if (this.posession == 'home') {
         this.homeScore += metric.scoreModifier;
       } else {
@@ -114,6 +127,10 @@ export class MatchComponent implements OnInit {
     if (metric.isTurnover) {
       this.posession = this.posession == 'home' ? 'away' : 'home';
     }
+  }
+
+  calculateTimestamp(): number {
+    return this.seconds + (this.minutes * 60);
   }
 
   endPeriod() {

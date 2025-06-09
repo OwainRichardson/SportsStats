@@ -15,6 +15,22 @@ namespace SportsStats.Repositories.Repositories
             _sportsStatsContext = sportsStatsContext;
         }
 
+        public async Task AddMatchEvent(Guid matchId, MatchEventInputModel model)
+        {
+            MatchEvent newMatchEvent = new()
+            {
+                Id = Guid.NewGuid(),
+                MatchId = matchId,
+                MetricId = model.MetricId,
+                TeamId = model.TeamId,
+                Timestamp = model.Timestamp,
+                CreatedDate = DateTime.UtcNow,
+            };
+
+            await _sportsStatsContext.MatchEvents.AddAsync(newMatchEvent);
+            await _sportsStatsContext.SaveChangesAsync();
+        }
+
         public async Task CompleteMatch(Guid matchId)
         {
             Match match = await _sportsStatsContext.Matches.FirstOrDefaultAsync(match => match.Id == matchId);

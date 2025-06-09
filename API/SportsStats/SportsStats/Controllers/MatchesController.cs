@@ -52,5 +52,15 @@ namespace SportsStats.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        [Route("sports/{sportId}/tournaments/{tournamentId}/matches/{matchId}/events")]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> AddMatchEvent([FromRoute] Guid matchId, [FromBody] MatchEventInputModel model)
+        {
+            await _matchRepository.AddMatchEvent(matchId, model);
+
+            return NoContent();
+        }
     }
 }

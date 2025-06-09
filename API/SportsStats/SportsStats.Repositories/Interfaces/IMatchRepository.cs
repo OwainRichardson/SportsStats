@@ -5,6 +5,7 @@ namespace SportsStats.Repositories.Interfaces
 {
     public interface IMatchRepository
     {
+        Task AddMatchEvent(Guid matchId, MatchEventInputModel model);
         Task CompleteMatch(Guid matchId);
         Task CreateMatch(Guid tournamentId, CreateMatchInputModel model);
         Task<Match> GetMatch(Guid matchId);
