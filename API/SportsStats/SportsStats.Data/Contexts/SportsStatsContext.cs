@@ -23,6 +23,7 @@ namespace SportsStats.Data.Contexts
             modelBuilder.Entity<Team>().HasKey(team => team.Id);
             modelBuilder.Entity<Match>().HasOne(match => match.HomeTeam).WithMany().OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Match>().HasOne(match => match.AwayTeam).WithMany().OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Player>().HasKey(player => player.Id);
         }
 
         public DbSet<Sport> Sports { get; set; }
@@ -33,5 +34,6 @@ namespace SportsStats.Data.Contexts
         public DbSet<Match> Matches { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<MatchEvent> MatchEvents { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 }
