@@ -14,6 +14,8 @@ import { SportTeamsCreateComponent } from './routes/sports/sport/teams/create/sp
 import { SportTeamComponent } from './routes/sports/sport/teams/team/sport-team.component';
 import { SportTournamentMatchesCreateComponent } from './routes/sports/sport/tournaments/tournament/matches/create/sport-tournament-matches-create.component';
 import { AuthGuard } from '@common/services/authGuard';
+import { SportTournamentMatchesComponent } from './routes/sports/sport/tournaments/tournament/matches/sport-tournament-matches.component';
+import { SportTournamentSettingsComponent } from './routes/sports/sport/tournaments/tournament/settings/sport-tournament-settings.component';
 
 export const appRoutes: Route[] = [
     { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -24,6 +26,8 @@ export const appRoutes: Route[] = [
     { path: 'sports/:sportId/tournaments', component: SportTournamentsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'sports/:sportId/tournaments/create', component: SportTournamentsCreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'sports/:sportId/tournaments/:tournamentId', component: SportTournamentComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: 'sports/:sportId/tournaments/:tournamentId/settings', component: SportTournamentSettingsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: 'sports/:sportId/tournaments/:tournamentId/matches', component: SportTournamentMatchesComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'sports/:sportId/tournaments/:tournamentId/matches/create', component: SportTournamentMatchesCreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'sports/:sportId/teams', component: SportTeamsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     { path: 'sports/:sportId/teams/create', component: SportTeamsCreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
