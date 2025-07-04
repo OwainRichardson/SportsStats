@@ -3,4 +3,5 @@ export interface SportSetting {
     name: string;
     value: string;
     sportId: string;
+    sportSettingId?: string;
 }

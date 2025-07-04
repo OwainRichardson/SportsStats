@@ -58,7 +58,8 @@ export class SportTournamentMatchesCreateComponent implements OnInit {
       homeTeamId: homeTeamInput.value,
       awayTeamId: awayTeamInput.value,
       pitch: pitchInput.value,
-      time: timeInput.value
+      time: timeInput.value,
+      isComplete: false
     }).subscribe(() => {
       this.router.navigate([`/sports/${this.sport.id}/tournaments/${this.tournament.id}`]);
     })

@@ -1,0 +1,31 @@
+<div class="text-xl cursor-pointer mb-4">
+    <div routerLink="/sports/{{sportId}}/tournaments/{{tournament.id}}" class="flex flex-row items-center">
+        <span class="font-material-icons mr-2">arrow_back</span>
+        back
+    </div>
+</div>
+
+<h1 class="text-4xl mb-12">{{tournament.name}} Settings</h1>
+<table class="w-full mb-12">
+    <thead>
+        <tr class="bg-green-400">
+            <th class="text-left rounded-l-xl py-4 pl-2">Name</th>
+            <th class="text-center py-4 pl-2">Sport value</th>
+            <th class="text-center py-4 pl-2">Tournament value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let setting of sportSettings" class="setting-row">
+            <td class="hidden setting-id">{{setting.id}}</td>
+            <td class="text-left py-4 pl-2">{{setting.name}}</td>
+            <td class="text-center py-4">{{setting.value}}</td>
+            <td class="text-center">
+                <input 
+                    type="text" 
+                    value="{{getTournamentSettingsValue(setting.id)}}" 
+                    class="border-2 border-green-600 rounded-lg p-2 focus:outline-none focus:border-green-300"
+                    (blur)="updateSetting($event, setting.id)" />
+            </td>
+        </tr>
+    </tbody>
+</table>

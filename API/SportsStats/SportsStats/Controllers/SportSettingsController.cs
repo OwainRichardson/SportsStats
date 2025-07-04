@@ -8,10 +8,10 @@ namespace SportsStats.Controllers
     [ApiController]
     public class SportSettingsController : ControllerBase
     {
-        private readonly ILogger<SportsController> _logger;
+        private readonly ILogger<SportSettingsController> _logger;
         private readonly ISportSettingsRepository _sportSettingsRepository;
 
-        public SportSettingsController(ILogger<SportsController> logger, ISportSettingsRepository sportSettingsRepository)
+        public SportSettingsController(ILogger<SportSettingsController> logger, ISportSettingsRepository sportSettingsRepository)
         {
             _logger = logger;
             _sportSettingsRepository = sportSettingsRepository;
