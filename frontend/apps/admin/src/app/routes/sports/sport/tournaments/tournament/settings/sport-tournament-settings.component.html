@@ -20,17 +20,12 @@
             <td class="text-left py-4 pl-2">{{setting.name}}</td>
             <td class="text-center py-4">{{setting.value}}</td>
             <td class="text-center">
-                <input type="text" value="{{getTournamentSettingsValue(setting.id)}}" class="border-2 border-green-600 rounded-lg p-2 focus:outline-none focus:border-green-300" />
+                <input 
+                    type="text" 
+                    value="{{getTournamentSettingsValue(setting.id)}}" 
+                    class="border-2 border-green-600 rounded-lg p-2 focus:outline-none focus:border-green-300"
+                    (blur)="updateSetting($event, setting.id)" />
             </td>
         </tr>
     </tbody>
 </table>
-
-<div class="flex flex-row justify-center">
-    <button 
-        type="button" 
-        class="w-1/2 bg-green-600 text-white rounded-xl py-4 hover:font-bold hover:shadow-md"
-        (click)="saveSettings()">
-        Save
-    </button>
-</div>

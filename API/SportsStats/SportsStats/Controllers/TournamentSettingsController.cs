@@ -40,5 +40,14 @@ namespace SportsStats.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("sports/{sportId}/tournaments/{tournamentId}/settings/{settingId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid settingId, [FromRoute] Guid tournamentId)
+        {
+            await _tournamentSettingsRepository.DeleteTournamentSetting(settingId, tournamentId);
+
+            return NoContent();
+        }
     }
 }

@@ -49,24 +49,28 @@ export class SportTournamentSettingsComponent implements OnInit {
     return this.tournamentSettings?.find(setting => setting.sportSettingId === sportSettingId)?.value || '';
   }
 
-  saveSettings() {
-    const settingRows = document.querySelectorAll('.setting-row');
-
-    settingRows.forEach(settingRow => {
-      const settingId = settingRow.querySelector('.setting-id')?.textContent;
-      if (settingId) {
-        const tournamentValueInput = settingRow.querySelector('input');
-        if (tournamentValueInput && tournamentValueInput.value !== '') {
-          if (this.tournamentSettings.find(setting => setting.sportSettingId === settingId)) {
-            this.tournamentSettingsService.updateTournamentSetting(tournamentValueInput.value, settingId, this.sportId, this.tournament.id).subscribe(); 
-          } else {
-            this.tournamentSettingsService.createTournamentSetting(tournamentValueInput.value, settingId, this.sportId, this.tournament.id).subscribe();
-          }
+  updateSetting(event: Event, settingId: string) {
+    if (settingId) {
+      const tournamentValueInput = event.target as HTMLInputElement;
+      if (tournamentValueInput && tournamentValueInput.value !== '') {
+        if (this.tournamentSettings.find(setting => setting.sportSettingId === settingId)) {
+          this.tournamentSettingsService.updateTournamentSetting(tournamentValueInput.value, settingId, this.sportId, this.tournament.id).subscribe(); 
+        } else {
+          this.tournamentSettingsService.createTournamentSetting(tournamentValueInput.value, settingId, this.sportId, this.tournament.id).subscribe();
         }
+      } else if (tournamentValueInput && tournamentValueInput.value === '') {
+          if (this.tournamentSettings.find(setting => setting.sportSettingId === settingId)) {
+            this.tournamentSettingsService.deleteTournamentSetting(settingId, this.sportId, this.tournament.id).subscribe();
+          }
       }
-    });
 
-    this.getTournamentSettings(this.sportId, this.tournament.id);
+      this.getTournamentSettings(this.sportId, this.tournament.id);
+
+      tournamentValueInput.classList.add('bg-green-200');
+      setTimeout(() => {
+        tournamentValueInput.classList.remove('bg-green-200');
+      }, 2000);
+    }
   }
 
   getTournamentSettings(sportId: string, tournamentId: string) {

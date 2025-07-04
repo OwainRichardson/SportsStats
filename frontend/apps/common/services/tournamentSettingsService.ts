@@ -20,4 +20,8 @@ export class TournamentSettingsService {
     updateTournamentSetting(value: string, settingId: string, sportId: string, tournamentId: string): Observable<SportSetting> {
         return this.http.put<SportSetting>(`${baseUrl}/sports/${sportId}/tournaments/${tournamentId}/settings/${settingId}`, {value}, this.authService.getRequestHeaders());
     }
+
+    deleteTournamentSetting(settingId: string, sportId: string, tournamentId: string): Observable<SportSetting> {
+        return this.http.delete<SportSetting>(`${baseUrl}/sports/${sportId}/tournaments/${tournamentId}/settings/${settingId}`, this.authService.getRequestHeaders());
+    }
 }

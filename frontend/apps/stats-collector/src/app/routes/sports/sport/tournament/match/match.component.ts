@@ -8,10 +8,12 @@ import { Match } from '@common/types/tournaments/match';
 import { MetricsService } from '@common/services/metricsService';
 import { SportMetric } from '@common/types/sports/sport-metric';
 import { SportsSettingsService } from '@common/services/sportsSettingsService';
+import { TournamentSettingsService } from '@common/services/tournamentSettingsService';
 import { OrdinalNumberPipe } from '@common/pipes/ordinal-number-pipe';
 import { Sport } from '@common/types/sports/sport';
 import { SportsService } from '@common/services/sportsService';
 import { PadNumberPipe } from '@common/pipes/pad-number-pipe';
+import { SportSetting } from '@common/types/sports/sport-setting';
 
 @Component({
   selector: 'app-match',
@@ -44,7 +46,8 @@ export class MatchComponent implements OnInit {
               private matchesService: MatchService,
               private metricsService: MetricsService,
               private sportsSettingsService: SportsSettingsService,
-              private sportService: SportsService) {}
+              private sportService: SportsService,
+              private tournamentSettingsService: TournamentSettingsService) {}
 
   ngOnInit(): void {
     const sportId = this.route.snapshot.paramMap.get('sportId');
@@ -55,19 +58,43 @@ export class MatchComponent implements OnInit {
       this.tournamentService.getTournament(sportId, tournamentId).subscribe(tournament => this.tournament = tournament);
       this.matchesService.getMatch(sportId, tournamentId, matchId).subscribe(match => this.match = match);
       this.metricsService.getSportMetrics(sportId).subscribe(metrics => this.metrics = metrics);
-      this.sportsSettingsService.getSportSettings(sportId).subscribe(settings => {
-        this.periodName = settings.find(s => s.name == 'Period name')?.value;
-        const periodLength = settings.find(s => s.name == 'Period length (m)')?.value;
-        if (periodLength) {
-          this.periodLength = parseInt(periodLength);
-        }
-        const numberOfPeriods = settings.find(s => s.name == 'Number of periods')?.value;
-        if (numberOfPeriods) {
-          this.numberOfPeriods = parseInt(numberOfPeriods);
-        }
-      });
+      this.getMatchSettings(sportId, tournamentId);
       this.sportService.getSport(sportId).subscribe(sport => this.sport = sport);
     }
+  }
+
+  private getMatchSettings(sportId: string, tournamentId: string) {
+    let sportSettings: SportSetting[] = [];
+    let tournamentSettings: SportSetting[] = [];
+    
+    this.sportsSettingsService.getSportSettings(sportId).subscribe(settings => {
+      sportSettings = settings;
+
+      this.tournamentSettingsService.getTournamentSettings(sportId, tournamentId).subscribe(settings => {
+        tournamentSettings = settings;
+
+        const periodNameSetting = sportSettings.find(s => s.name == 'Period name');
+        if (tournamentSettings.find(s => s.sportSettingId == periodNameSetting?.id)) {
+          this.periodName = tournamentSettings.find(s => s.sportSettingId == periodNameSetting?.id)?.value;
+        } else {
+          this.periodName = sportSettings.find(s => s.name == 'Period name')?.value;
+        }
+
+        const periodLengthSetting = sportSettings.find(s => s.name == 'Period length (m)');
+        if (tournamentSettings.find(s => s.sportSettingId == periodLengthSetting?.id)) {
+          this.periodLength = parseInt(tournamentSettings.find(s => s.sportSettingId == periodLengthSetting?.id)?.value ?? '0');
+        } else {
+          this.periodLength = parseInt(sportSettings.find(s => s.name == 'Period length (m)')?.value ?? '0');
+        }
+
+        const numberOfPeriodsSetting = sportSettings.find(s => s.name == 'Number of periods');
+        if (tournamentSettings.find(s => s.sportSettingId == numberOfPeriodsSetting?.id)) {
+          this.numberOfPeriods = parseInt(tournamentSettings.find(s => s.sportSettingId == numberOfPeriodsSetting?.id)?.value ?? '0');
+        } else {
+          this.numberOfPeriods = parseInt(sportSettings.find(s => s.name == 'Number of periods')?.value ?? '0');
+        }
+      });
+    });
   }
 
   startPeriod() {

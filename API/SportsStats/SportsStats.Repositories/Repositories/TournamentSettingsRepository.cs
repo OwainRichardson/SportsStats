@@ -31,6 +31,19 @@ namespace SportsStats.Repositories.Repositories
             await _sportsStatsContext.SaveChangesAsync();
         }
 
+        public async Task DeleteTournamentSetting(Guid settingId, Guid tournamentId)
+        {
+            TournamentSetting dbSetting = await _sportsStatsContext.TournamentSettings
+                                                .FirstOrDefaultAsync(setting => setting.SportSettingId == settingId
+                                                                                && setting.TournamentId == tournamentId);
+
+            if (dbSetting != null)
+            {
+                _sportsStatsContext.TournamentSettings.Remove(dbSetting);
+                await _sportsStatsContext.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<TournamentSettingDetail>> GetTournamentSettings(Guid sportId, Guid tournamentId)
         {
             return await _sportsStatsContext.TournamentSettings
